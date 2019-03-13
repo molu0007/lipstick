@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProgressActivity">
+        <attr name="loadingProgressBarWidth" format="dimension" />
+        <attr name="loadingProgressBarHeight" format="dimension" />
+        <attr name="loadingProgressBarColor" format="color|reference" />
+        <attr name="loadingBackgroundColor" format="color|reference" />
+
+        <attr name="emptyImage" format="reference" />
+        <attr name="emptyImageWidth" format="dimension" />
+        <attr name="emptyImageHeight" format="dimension" />
+        <attr name="emptyTitleText" format="string" localization="suggested" />
+        <attr name="emptyTitleTextSize" format="dimension" />
+        <attr name="emptyContentText" format="string" localization="suggested" />
+        <attr name="emptyContentTextSize" format="dimension" />
+        <attr name="emptyTitleTextColor" format="color|reference" />
+        <attr name="emptyContentTextColor" format="color|reference" />
+        <attr name="emptyBackgroundColor" format="color|reference" />
+
+        <attr name="errorImage" format="reference" />
+        <attr name="errorImageWidth" format="dimension" />
+        <attr name="errorImageHeight" format="dimension" />
+        <attr name="errorTitleText" format="string" />
+        <attr name="errorTitleTextSize" format="dimension" />
+        <attr name="errorContentText" format="string" />
+        <attr name="errorContentTextSize" format="dimension" />
+        <attr name="errorTitleTextColor" format="color|reference" />
+        <attr name="errorContentTextColor" format="color|reference" />
+        <attr name="errorButtonText" format="string" />
+        <attr name="errorButtonTextColor" format="color|reference" />
+        <attr name="errorButtonBackgroundColor" format="color|reference" />
+        <attr name="errorBackgroundColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="WaveProgress1">
+        <!-- 是否开启抗锯齿 -->
+        <attr name="antiAlias" format="boolean" />
+        <!-- 深色水波动画时间 -->
+        <attr name="darkWaveAnimTime" format="integer" />
+        <!-- 浅色水波动画时间 -->
+        <attr name="lightWaveAnimTime" format="integer" />
+        <!-- 最大值 -->
+        <attr name="maxValue" format="integer" />
+        <!-- 当前值 -->
+        <attr name="value" format="integer" />
+        <attr name="valueColor" format="color"/>
+        <attr name="valueSize" format="integer"/>
+        <!-- 绘制内容相应的提示语 -->
+        <attr name="hint" format="string"/>
+        <attr name="hintSize" format="integer"/>
+        <attr name="hintColor" format="color" />
+        <!-- 圆环宽度 -->
+        <attr name="circleWidth" format="dimension" />
+        <!-- 圆环颜色 -->
+        <attr name="circleColor" format="color|reference" />
+        <!-- 背景圆环颜色 -->
+        <attr name="bgCircleColor" format="color|reference" />
+        <!-- 锁定水波不随圆环进度改变，默认锁定在50%处 -->
+        <attr name="lockWave" format="boolean" />
+        <!-- 水波数量 -->
+        <attr name="waveNum" format="integer" />
+        <!-- 水波高度，峰值和谷值之和 -->
+        <attr name="waveHeight" format="dimension" />
+        <!-- 深色水波颜色 -->
+        <attr name="darkWaveColor" format="color|reference" />
+        <!-- 是否显示浅色水波 -->
+        <attr name="showLightWave" format="boolean" />
+        <!-- 浅色水波颜色 -->
+        <attr name="lightWaveColor" format="color|reference" />
+        <!-- 浅色水波的方向 -->
+        <attr name="lightWaveDirect" format="enum">
+            <enum name="L2R" value="0" />
+            <enum name="R2L" value="1" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MarqueeViewStyle">
+        <attr name="mvInterval" format="integer"/>
+        <attr name="mvAnimDuration" format="boolean"/>
+        <attr name="mvTextSize" format="dimension"/>
+        <attr name="mvTextColor" format="color"/>
+    </declare-styleable>
+
+</resources>

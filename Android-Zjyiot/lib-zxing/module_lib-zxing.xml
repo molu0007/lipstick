@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_lib-zxing" default="compile.module.lib-zxing">
+  <dirname property="module.lib-zxing.basedir" file="${ant.file.module_lib-zxing}"/>
+  
+  <property name="module.jdk.home.lib-zxing" value="${jdk.home.android_api_26_platform}"/>
+  <property name="module.jdk.bin.lib-zxing" value="${jdk.bin.android_api_26_platform}"/>
+  <property name="module.jdk.classpath.lib-zxing" value="jdk.classpath.android_api_26_platform"/>
+  
+  <property name="compiler.args.lib-zxing" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="lib-zxing.output.dir" value="${module.lib-zxing.basedir}/build/intermediates/classes/debug"/>
+  <property name="lib-zxing.testoutput.dir" value="${module.lib-zxing.basedir}/build/intermediates/classes/test/debug"/>
+  
+  <path id="lib-zxing.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lib-zxing.module.production.classpath">
+    <path refid="${module.jdk.classpath.lib-zxing}"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+  </path>
+  
+  <path id="lib-zxing.runtime.production.module.classpath">
+    <pathelement location="${lib-zxing.output.dir}"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+  </path>
+  
+  <path id="lib-zxing.module.classpath">
+    <path refid="${module.jdk.classpath.lib-zxing}"/>
+    <pathelement location="${lib-zxing.output.dir}"/>
+    <path refid="library.com.android.support.test:exposed-instrumentation-api-publish-0.5.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-core:1.3@jar.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-core-2.2.2.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.junit:junit:4.12@jar.classpath"/>
+    <path refid="library.com.android.support.test:rules-0.5.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-library:1.3@jar.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-integration:1.3@jar.classpath"/>
+    <path refid="library.javax.inject:javax.inject:1@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support.test:runner-0.5.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.squareup:javawriter:2.1.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-idling-resource-2.2.2.classpath"/>
+    <path refid="library.javax.annotation:javax.annotation-api:1.2@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.code.findbugs:jsr305:2.0.1@jar.classpath"/>
+  </path>
+  
+  <path id="lib-zxing.runtime.module.classpath">
+    <pathelement location="${lib-zxing.testoutput.dir}"/>
+    <pathelement location="${lib-zxing.output.dir}"/>
+    <path refid="library.com.android.support.test:exposed-instrumentation-api-publish-0.5.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-core:1.3@jar.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-core-2.2.2.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.junit:junit:4.12@jar.classpath"/>
+    <path refid="library.com.android.support.test:rules-0.5.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-library:1.3@jar.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-integration:1.3@jar.classpath"/>
+    <path refid="library.javax.inject:javax.inject:1@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support.test:runner-0.5.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.squareup:javawriter:2.1.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-idling-resource-2.2.2.classpath"/>
+    <path refid="library.javax.annotation:javax.annotation-api:1.2@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <path refid="library.com.google.code.findbugs:jsr305:2.0.1@jar.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lib-zxing">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lib-zxing">
+    <patternset refid="excluded.from.module.lib-zxing"/>
+  </patternset>
+  
+  <path id="lib-zxing.module.sourcepath">
+    <dirset dir="${module.lib-zxing.basedir}">
+      <include name="build/generated/source/r/debug"/>
+      <include name="build/generated/source/aidl/debug"/>
+      <include name="build/generated/source/buildConfig/debug"/>
+      <include name="src/main/res"/>
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="lib-zxing.module.test.sourcepath">
+    <dirset dir="${module.lib-zxing.basedir}">
+      <include name="build/generated/source/r/androidTest/debug"/>
+      <include name="build/generated/source/aidl/androidTest/debug"/>
+      <include name="build/generated/source/buildConfig/androidTest/debug"/>
+      <include name="src/androidTest/java"/>
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lib-zxing" depends="compile.module.lib-zxing.production,compile.module.lib-zxing.tests" description="Compile module lib-zxing"/>
+  
+  <target name="compile.module.lib-zxing.production" depends="register.custom.compilers" description="Compile module lib-zxing; production classes">
+    <mkdir dir="${lib-zxing.output.dir}"/>
+    <javac2 destdir="${lib-zxing.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lib-zxing}/javac">
+      <compilerarg line="${compiler.args.lib-zxing}"/>
+      <bootclasspath refid="lib-zxing.module.bootclasspath"/>
+      <classpath refid="lib-zxing.module.production.classpath"/>
+      <src refid="lib-zxing.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lib-zxing"/>
+    </javac2>
+    
+    <copy todir="${lib-zxing.output.dir}">
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/r/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/aidl/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/buildConfig/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/src/main/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lib-zxing.tests" depends="register.custom.compilers,compile.module.lib-zxing.production" description="compile module lib-zxing; test classes" unless="skip.tests">
+    <mkdir dir="${lib-zxing.testoutput.dir}"/>
+    <javac2 destdir="${lib-zxing.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lib-zxing}/javac">
+      <compilerarg line="${compiler.args.lib-zxing}"/>
+      <bootclasspath refid="lib-zxing.module.bootclasspath"/>
+      <classpath refid="lib-zxing.module.classpath"/>
+      <src refid="lib-zxing.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lib-zxing"/>
+    </javac2>
+    
+    <copy todir="${lib-zxing.testoutput.dir}">
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/r/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/aidl/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/build/generated/source/buildConfig/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/src/androidTest/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.lib-zxing.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.lib-zxing" description="cleanup module">
+    <delete dir="${lib-zxing.output.dir}"/>
+    <delete dir="${lib-zxing.testoutput.dir}"/>
+  </target>
+</project>

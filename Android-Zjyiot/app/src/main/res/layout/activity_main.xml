@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                 android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_weight="1"
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <com.qyy.app.lipstick.views.MDMRadioButton
+            android:checked="true"
+            android:background="@color/white"
+            android:drawableTop="@drawable/selector_home_icon1"
+            android:gravity="top|center_horizontal"
+            android:drawablePadding="5dp"
+            android:id="@+id/rb_tab_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="首页"
+            android:textColor="@drawable/rb__font_style"
+            android:button="@null" />
+        <com.qyy.app.lipstick.views.MDMRadioButton
+            android:background="@color/white"
+            android:drawableTop="@drawable/selector_home_icon2"
+            android:gravity="top|center_horizontal"
+            android:drawablePadding="5dp"
+            android:textColor="@drawable/rb__font_style"
+            android:id="@+id/rb_tab_top_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="超贷"
+            android:button="@null" />
+        <com.qyy.app.lipstick.views.MDMRadioButton
+            android:textColor="@drawable/rb__font_style"
+            android:background="@color/white"
+            android:drawableTop="@drawable/selector_home_icon3"
+            android:gravity="top|center_horizontal"
+            android:drawablePadding="5dp"
+            android:id="@+id/rb_tab_about"
+            android:text="关于"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:button="@null" />
+    </RadioGroup>
+</LinearLayout>
+

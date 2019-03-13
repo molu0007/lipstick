@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dp_1"
+        android:layout_marginBottom="@dimen/dp_1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_height="@dimen/dp_210"
+        android:elevation="@dimen/dp_1"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_goods"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="@dimen/dp_88"
+                android:layout_height="@dimen/dp_88" />
+            <TextView
+                android:layout_weight="1"
+              android:gravity="center"
+                android:id="@+id/tv_buy_price"
+                android:textSize="@dimen/sp_11"
+                android:textColor="@color/color_d50a29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/tv_buy_brand"
+                android:textSize="@dimen/sp_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"/>
+            <TextView
+                android:layout_weight="1"
+                android:gravity="center"
+                android:id="@+id/tv_buy_name"
+                android:textSize="@dimen/sp_11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_333333"/>
+            <TextView
+                android:layout_marginBottom="@dimen/dp_5"
+                android:gravity="center"
+                android:id="@+id/tv_integral"
+                android:textSize="@dimen/sp_12"
+                android:textColor="@color/color_black"
+                android:background="@drawable/shape_bt_bg"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_30" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

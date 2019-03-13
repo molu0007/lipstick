@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:src="@mipmap/ic_launcher1"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:textColor="@color/text_0al44e"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name1"/>
+    <TextView
+        android:id="@+id/tv_version"
+        android:textColor="@color/text_7d8eb4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="版本号：V3.1.2"/>
+    <Button
+        android:id="@+id/bt_check_update"
+        android:textColor="@color/text_0al44e"
+        android:background="@mipmap/bg_check_update"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="检测新版本"/>
+    <TextView
+        android:textColor="@color/text_7d8eb4"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:singleLine="false"
+        android:layout_height="wrap_content"
+        android:text="Copyright©2018深圳市中景元科技有限公司"/>
+    <TextView
+        android:textColor="@color/text_7d8eb4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Rights Reserved"
+        android:gravity="center"/>
+</LinearLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_common" default="compile.module.common">
+  <dirname property="module.common.basedir" file="${ant.file.module_common}"/>
+  
+  <property name="module.jdk.home.common" value="${jdk.home.android_api_26_platform}"/>
+  <property name="module.jdk.bin.common" value="${jdk.bin.android_api_26_platform}"/>
+  <property name="module.jdk.classpath.common" value="jdk.classpath.android_api_26_platform"/>
+  
+  <property name="compiler.args.common" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="common.output.dir" value="${module.common.basedir}/build/intermediates/classes/debug"/>
+  <property name="common.testoutput.dir" value="${module.common.basedir}/build/intermediates/classes/test/debug"/>
+  
+  <path id="common.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="common.module.production.classpath">
+    <path refid="${module.jdk.classpath.common}"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-1.0.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-8.4.0.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-annotations:8.4.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.squareup.okhttp3:okhttp:3.8.1@jar.classpath"/>
+    <path refid="library.com.orhanobut:logger-2.1.1.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.7@jar.classpath"/>
+    <path refid="library.com.squareup.okio:okio:1.13.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <pathelement location="${lib-zxing.output.dir}"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+  </path>
+  
+  <path id="common.runtime.production.module.classpath">
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-1.0.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-8.4.0.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-annotations:8.4.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.squareup.okhttp3:okhttp:3.8.1@jar.classpath"/>
+    <path refid="library.com.orhanobut:logger-2.1.1.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.7@jar.classpath"/>
+    <path refid="library.com.squareup.okio:okio:1.13.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <path refid="lib-zxing.runtime.production.module.classpath"/>
+  </path>
+  
+  <path id="common.module.classpath">
+    <path refid="${module.jdk.classpath.common}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-1.0.1.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-core:1.3@jar.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-8.4.0.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.junit:junit:4.12@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-instrumentation-1.0.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-annotations:8.4.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.squareup.okhttp3:okhttp:3.8.1@jar.classpath"/>
+    <path refid="library.com.orhanobut:logger-2.1.1.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.7@jar.classpath"/>
+    <path refid="library.com.squareup.okio:okio:1.13.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <pathelement location="${lib-zxing.testoutput.dir}"/>
+    <pathelement location="${lib-zxing.output.dir}"/>
+    <path refid="library.com.android.support.test:exposed-instrumentation-api-publish-0.5.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-core-2.2.2.classpath"/>
+    <path refid="library.com.android.support.test:rules-0.5.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-library:1.3@jar.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-integration:1.3@jar.classpath"/>
+    <path refid="library.javax.inject:javax.inject:1@jar.classpath"/>
+    <path refid="library.com.android.support.test:runner-0.5.classpath"/>
+    <path refid="library.com.squareup:javawriter:2.1.1@jar.classpath"/>
+    <path refid="library.com.google.zxing:core:3.3.0@jar.classpath"/>
+    <path refid="library.com.android.support.test.espresso:espresso-idling-resource-2.2.2.classpath"/>
+    <path refid="library.javax.annotation:javax.annotation-api:1.2@jar.classpath"/>
+    <path refid="library.com.google.code.findbugs:jsr305:2.0.1@jar.classpath"/>
+  </path>
+  
+  <path id="common.runtime.module.classpath">
+    <pathelement location="${common.testoutput.dir}"/>
+    <pathelement location="${common.output.dir}"/>
+    <path refid="library.com.squareup.retrofit2:converter-gson:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-1.0.1.classpath"/>
+    <path refid="library.org.hamcrest:hamcrest-core:1.3@jar.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-8.4.0.classpath"/>
+    <path refid="library.com.android.support:animated-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.junit:junit:4.12@jar.classpath"/>
+    <path refid="library.com.android.support:multidex-instrumentation-1.0.1.classpath"/>
+    <path refid="library.com.jakewharton:butterknife-annotations:8.4.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-core-ui-25.3.1.classpath"/>
+    <path refid="library.com.android.support:appcompat-v7-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-compat-25.3.1.classpath"/>
+    <path refid="library.com.squareup.okhttp3:okhttp:3.8.1@jar.classpath"/>
+    <path refid="library.com.orhanobut:logger-2.1.1.classpath"/>
+    <path refid="library.com.android.support:support-core-utils-25.3.1.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.7@jar.classpath"/>
+    <path refid="library.com.squareup.okio:okio:1.13.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-vector-drawable-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-v4-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-fragment-25.3.1.classpath"/>
+    <path refid="library.com.android.support:support-annotations:25.3.1@jar.classpath"/>
+    <path refid="library.com.squareup.retrofit2:retrofit:2.3.0@jar.classpath"/>
+    <path refid="library.com.android.support:support-media-compat-25.3.1.classpath"/>
+    <path refid="lib-zxing.runtime.module.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.common">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.common">
+    <patternset refid="excluded.from.module.common"/>
+  </patternset>
+  
+  <path id="common.module.sourcepath">
+    <dirset dir="${module.common.basedir}">
+      <include name="build/generated/source/r/debug"/>
+      <include name="build/generated/source/aidl/debug"/>
+      <include name="build/generated/source/buildConfig/debug"/>
+      <include name="src/main/res"/>
+      <include name="src/main/java"/>
+    </dirset>
+  </path>
+  
+  <path id="common.module.test.sourcepath">
+    <dirset dir="${module.common.basedir}">
+      <include name="build/generated/source/r/androidTest/debug"/>
+      <include name="build/generated/source/aidl/androidTest/debug"/>
+      <include name="build/generated/source/buildConfig/androidTest/debug"/>
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.common" depends="compile.module.common.production,compile.module.common.tests" description="Compile module common"/>
+  
+  <target name="compile.module.common.production" depends="register.custom.compilers,compile.module.lib-zxing" description="Compile module common; production classes">
+    <mkdir dir="${common.output.dir}"/>
+    <javac2 destdir="${common.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.common}/javac">
+      <compilerarg line="${compiler.args.common}"/>
+      <bootclasspath refid="common.module.bootclasspath"/>
+      <classpath refid="common.module.production.classpath"/>
+      <src refid="common.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.common"/>
+    </javac2>
+    
+    <copy todir="${common.output.dir}">
+      <fileset dir="${module.common.basedir}/build/generated/source/r/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/build/generated/source/aidl/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/build/generated/source/buildConfig/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/src/main/res">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.common.tests" depends="register.custom.compilers,compile.module.common.production" description="compile module common; test classes" unless="skip.tests">
+    <mkdir dir="${common.testoutput.dir}"/>
+    <javac2 destdir="${common.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.common}/javac">
+      <compilerarg line="${compiler.args.common}"/>
+      <bootclasspath refid="common.module.bootclasspath"/>
+      <classpath refid="common.module.classpath"/>
+      <src refid="common.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.common"/>
+    </javac2>
+    
+    <copy todir="${common.testoutput.dir}">
+      <fileset dir="${module.common.basedir}/build/generated/source/r/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/build/generated/source/aidl/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/build/generated/source/buildConfig/androidTest/debug">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.common.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.common" description="cleanup module">
+    <delete dir="${common.output.dir}"/>
+    <delete dir="${common.testoutput.dir}"/>
+  </target>
+</project>

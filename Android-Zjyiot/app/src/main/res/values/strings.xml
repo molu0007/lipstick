@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">流量助手</string>
+    <string name="app_name1">口红机</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_wechat_pay_test">微信支付测试</string>
+    <string name="action_alipay_test">支付宝支付测试</string>
+    <string name="title_activity_pay_wechat">PayWechatActivity</string>
+    <string name="title_activity_pay_ali_pay">PayAliPayActivity</string>
+    <string name="title_activity_test_online">TestOnlineActivity</string>
+
+    <string name="progressActivityErrorButton">点击重试</string>
+    <string name="progressActivityEmptyTitlePlaceholder">暂时没有数据</string>
+    <string name="progressActivityEmptyContentPlaceholder" />
+    <string name="progressActivityErrorTitlePlaceholder">网络请求失败</string>
+    <string name="progressActivityErrorContentPlaceholder">.</string>
+    <string name="tip_loading">加载中&#8230;</string>
+    <string name="text_loading">正在加载&#8230;</string>
+    <string name="text_remain_time">剩余时长</string>
+    <string name="text_packace_type">卡类型</string>
+    <string name="toast_net_exception">网络请求失败</string>
+    <string name="order_detail">订单详情</string>
+
+    <string name="default_cls">io.github.zjyiot.ui.Activity.home.StartActivity</string>
+    <string name="component_cls">io.github.zjyiot.changeAppLogo</string>
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_android-zjyiot" default="compile.module.android-zjyiot">
+  <dirname property="module.android-zjyiot.basedir" file="${ant.file.module_android-zjyiot}"/>
+  
+  <property name="module.jdk.home.android-zjyiot" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.android-zjyiot" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.android-zjyiot" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.android-zjyiot" value="-encoding UTF-8 -source 1.7 -target 1.7 ${compiler.args}"/>
+  
+  <property name="android-zjyiot.output.dir" value="${module.android-zjyiot.basedir}/build/classes/production/Android-Zjyiot"/>
+  <property name="android-zjyiot.testoutput.dir" value="${module.android-zjyiot.basedir}/build/classes/test/Android-Zjyiot"/>
+  
+  <path id="android-zjyiot.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="android-zjyiot.module.production.classpath">
+    <path refid="${module.jdk.classpath.android-zjyiot}"/>
+  </path>
+  
+  <path id="android-zjyiot.runtime.production.module.classpath">
+    <pathelement location="${android-zjyiot.output.dir}"/>
+  </path>
+  
+  <path id="android-zjyiot.module.classpath">
+    <path refid="${module.jdk.classpath.android-zjyiot}"/>
+    <pathelement location="${android-zjyiot.output.dir}"/>
+  </path>
+  
+  <path id="android-zjyiot.runtime.module.classpath">
+    <pathelement location="${android-zjyiot.testoutput.dir}"/>
+    <pathelement location="${android-zjyiot.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.android-zjyiot">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.android-zjyiot">
+    <patternset refid="excluded.from.module.android-zjyiot"/>
+  </patternset>
+  
+  
+  <target name="compile.module.android-zjyiot" depends="compile.module.android-zjyiot.production,compile.module.android-zjyiot.tests" description="Compile module Android-Zjyiot"/>
+  
+  <target name="compile.module.android-zjyiot.production" depends="register.custom.compilers" description="Compile module Android-Zjyiot; production classes"/>
+  
+  <target name="compile.module.android-zjyiot.tests" depends="register.custom.compilers,compile.module.android-zjyiot.production" description="compile module Android-Zjyiot; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.android-zjyiot" description="cleanup module">
+    <delete dir="${android-zjyiot.output.dir}"/>
+    <delete dir="${android-zjyiot.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_white">@android:color/white</color>
+    <color name="color_black">@android:color/black</color>
+    <color name="progress_btn_error">#e96a38</color>
+    <color name="progress_text_default">#30343e</color>
+    <color name="text_0al44e">#0a144e</color>
+    <color name="text_7d8eb4">#7d8eb4</color>
+    <color name="text_deebfa">#deebfa</color>
+    <color name="text_7d8eb7">#7d8eb7</color>
+    <color name="text_white">#ffffff</color>
+    <color name="text_0dd51a">#0dd51a</color>
+    <color name="text_d5170d">#d5170d</color>
+    <color name="transparent">#00000000</color>
+    <color name="transparent90">#95000000</color>
+    <color name="text_f15522">#f15522</color>
+    <color name="text_999999">#999999</color>
+    <color name="color_30343e">#30343e</color>
+    <color name="color_ff9079">#FF9079</color>
+    <color name="color_fc588d">#FC588D</color>
+    <color name="white">#ffffff</color>
+    <color name="color_dcdcdc">#DCDCDC</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_fc598d">#fc598d</color>
+    <color name="color_f2f2f2">#fff2f2f2</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_d50a29">#d50a29</color>
+    <color name="color_d81a37">#d81a37</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_dddddd">#dddddd</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+</resources>

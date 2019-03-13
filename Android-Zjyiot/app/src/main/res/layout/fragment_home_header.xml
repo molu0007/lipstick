@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <com.qyy.app.lipstick.views.UPMarqueeView
+        android:layout_gravity="center"
+        android:background="@drawable/shape_11dp"
+        android:layout_margin="@dimen/dp_15"
+        android:id="@+id/upmv_textview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_23"></com.qyy.app.lipstick.views.UPMarqueeView>
+
+    <com.allure.lbanners.LMBanners
+        android:id="@+id/banners"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_160"
+        app:canLoop="true"
+        app:isVertical="false"
+        app:auto_play="true"
+        app:durtion="5000"
+        app:scroll_duration="66666"
+        app:horizontal_transitionEffect="accordion"
+        >
+    </com.allure.lbanners.LMBanners>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_point"
+            android:layout_weight="1"
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color_333333"
+            android:drawablePadding="@dimen/dp_4"
+            android:drawableLeft="@drawable/sy_yue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="余额：0个积分"/>
+        <TextView
+            android:textSize="@dimen/sp_14"
+            android:textColor="@color/color_333333"
+            android:drawablePadding="@dimen/dp_4"
+            android:drawableLeft="@drawable/sy_sm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="挑战说明"/>
+    </LinearLayout>
+</LinearLayout>
