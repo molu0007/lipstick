@@ -45,16 +45,21 @@ dependencies {
     compile project(':lib-zxing')
     //注释掉原有bugly的仓库
     //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.3.2
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     //https://github.com/hongyangAndroid/baseAdapter
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'com.zhy:base-adapter:3.0.3'
-    compile 'com.allure0:LMBanners:1.0.9'//https://github.com/Allure0/LMBanners
+    compile 'com.allure0:LMBanners:1.0.9'
+    //https://github.com/Allure0/LMBanners
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.jakewharton:butterknife:8.4.0'
-    annotationProcessor'com.jakewharton:butterknife-compiler:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.android.support:support-annotations:28.0.0'
+    //    compile 'io.github.mayubao:pay_library:1.0.1'
+    implementation project(':pay-library')
 }

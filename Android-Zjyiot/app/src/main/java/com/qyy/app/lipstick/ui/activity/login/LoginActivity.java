@@ -74,8 +74,8 @@ public class LoginActivity extends BaseActivity {
             case R.id.tv_agreement:
                 break;
             case R.id.tv_login:
-                toMain();
-//                toLogin();
+//                toMain();
+                toLogin();
                 break;
             case R.id.tv_weixin:
 

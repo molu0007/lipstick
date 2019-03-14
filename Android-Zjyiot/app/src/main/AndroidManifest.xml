@@ -89,6 +89,9 @@
             android:name=".ui.activity.mall.OrderActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".ui.activity.mall.RechareActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />

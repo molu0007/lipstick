@@ -80,4 +80,9 @@ public final class  Config {
      * post  /api/jucaib/order/submit 创建订单
      */
     public final static String URL_CRETE_ORDER="/api/jucaib/order/submit";
+
+    /**
+     * post  /api/jucaib/pay/prepay  获取支付的请求参数
+     */
+    public final static String URL_PAY_PREPAY="/api/jucaib/pay/prepay ";
 }

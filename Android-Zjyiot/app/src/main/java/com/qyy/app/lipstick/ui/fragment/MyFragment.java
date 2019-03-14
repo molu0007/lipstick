@@ -21,6 +21,7 @@ import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
 import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
 import com.qyy.app.lipstick.ui.activity.mall.OrderActivity;
+import com.qyy.app.lipstick.ui.activity.mall.RechareActivity;
 import com.qyy.app.lipstick.utils.PrefsUtil;
 
 import butterknife.BindView;
@@ -85,7 +86,8 @@ public class MyFragment extends BaseFragment {
                 startActivity(intentOrder);
                 break;
             case R.id.ll_rechare:
-
+                Intent intentRechare=new Intent(getActivity(), RechareActivity.class);
+                startActivity(intentRechare);
                 break;
             case R.id.ll_service:
                 break;

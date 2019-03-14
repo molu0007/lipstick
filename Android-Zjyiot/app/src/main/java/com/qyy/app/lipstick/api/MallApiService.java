@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -25,4 +26,7 @@ public interface MallApiService {
     Call<RespInfo<OrderEntry>> getOrderList();
     @GET(Config.URL_HOME_GAME_RECHARGE)
     Call<RespInfo<List<RechareGoods>>> getRechargeList();
+    @GET(Config.URL_PAY_PREPAY)
+    Call<RespInfo<String>> getPayParameter(@Query("rid")int rid,@Query("payType")String payType);
+
 }
