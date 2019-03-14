@@ -14,6 +14,7 @@
         android:orientation="vertical">
         <TextView
         android:text="60"
+            android:textSize="@dimen/sp_15"
         android:textColor="@color/color_333333"
         android:id="@+id/tv_mony"
         android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             android:text="46积分"
             android:textColor="@color/color_333333"
             android:id="@+id/tv_integral"
+            android:textSize="@dimen/sp_12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" /></LinearLayout>
 

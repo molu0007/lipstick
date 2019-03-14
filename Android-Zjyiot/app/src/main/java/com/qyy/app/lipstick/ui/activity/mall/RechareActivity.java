@@ -1,10 +1,12 @@
 package com.qyy.app.lipstick.ui.activity.mall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.ibupush.molu.common.model.RespInfo;
@@ -47,10 +49,13 @@ public class RechareActivity extends BaseActivity {
     RecyclerView rvRechare;
     @BindView(R.id.bt_rechare)
     Button btRechare;
+    @BindView(R.id.tv_balance)
+    TextView mTextView;
     private MallApiService mMallApiService;
     protected CommonAdapter<RechareGoods> mRechareGoodsCommonAdapter;
     private List<RechareGoods> mRechareGoodsList = new ArrayList<>();
     private static int checkPos;
+    private long blance;
     @Override
     protected int getContentViewId() {
         return R.layout.activity_rechare;
@@ -60,6 +65,9 @@ public class RechareActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setCenterTitleText("充值");
+        Intent intent=getIntent();
+        blance =intent.getLongExtra("Balance",0);
+        mTextView.setText("当前积分："+blance);
         rvRechare.setLayoutManager(new GridLayoutManager(this,2));
         mRechareGoodsCommonAdapter = new CommonAdapter<RechareGoods>(this, R.layout.item_rechare, mRechareGoodsList) {
             @Override
@@ -73,8 +81,8 @@ public class RechareActivity extends BaseActivity {
                     holder.setTextColor(R.id.tv_integral,getResources().getColor(R.color.color_333333));
                     holder.setBackgroundRes(R.id.ll_contair,R.drawable.shape_fafafa_bg);
                 }
-                holder.setText(R.id.tv_mony,rechareGoods.getPayNum()+"");
-                holder.setText(R.id.tv_integral,rechareGoods.getJifen()+"");
+                holder.setText(R.id.tv_mony,"￥"+rechareGoods.getPayNum()+"");
+                holder.setText(R.id.tv_integral,rechareGoods.getJifen()+"积分（首充翻倍）");
                 holder.setOnClickListener(R.id.ll_contair, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -171,6 +179,7 @@ public class RechareActivity extends BaseActivity {
                         AlipayResult alipayResult=gson.fromJson(resultInfo,AlipayResult.class);
                         if (alipayResult!=null){
                             String orderId=alipayResult.getAlipay_trade_app_pay_response().getOut_trade_no();
+                            getPayResult(orderId);
                         }
                     }
 
@@ -194,6 +203,21 @@ public class RechareActivity extends BaseActivity {
             @Override
             protected void onFail(Call<RespInfo<String >> call, int type, String code, String tip) {
                 ToastUtils.showShortToast(RechareActivity.this,tip);
+            }
+        });
+    }
+
+    private void getPayResult(String orderId) {
+        Call<RespInfo<Object>> call =mMallApiService.getPayResult(orderId);
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+                LogUtil.d(data.toString());
+            }
+
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
             }
         });
     }

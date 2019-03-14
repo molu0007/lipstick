@@ -28,5 +28,6 @@ public interface MallApiService {
     Call<RespInfo<List<RechareGoods>>> getRechargeList();
     @GET(Config.URL_PAY_PREPAY)
     Call<RespInfo<String>> getPayParameter(@Query("rid")int rid,@Query("payType")String payType);
-
+    @GET(Config.URL_PAY_RESULT)
+    Call<RespInfo<Object>> getPayResult(@Query("orderId")String orderId);
 }

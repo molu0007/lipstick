@@ -50,6 +50,7 @@ public class MyFragment extends BaseFragment {
     @BindView(R.id.ll_out_login)
     LinearLayout llOutLogin;
     HomeApiService mHomeApiService;
+    UserInfo mUserInfo;
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_my;
@@ -67,6 +68,7 @@ public class MyFragment extends BaseFragment {
                 if (data!=null){
                     Glide.with(getActivity()).load(data.getAvatar()).into(ivHeader);
                     mTextViewName.setText(data.getNickname());
+                    mUserInfo=data;
                     tvBalance.setText("积分余额："+data.getJifen()+"");
                 }
             }
@@ -87,6 +89,8 @@ public class MyFragment extends BaseFragment {
                 break;
             case R.id.ll_rechare:
                 Intent intentRechare=new Intent(getActivity(), RechareActivity.class);
+                if (mUserInfo!=null)
+                intentRechare.putExtra("Balance",mUserInfo.getJifen());
                 startActivity(intentRechare);
                 break;
             case R.id.ll_service:
