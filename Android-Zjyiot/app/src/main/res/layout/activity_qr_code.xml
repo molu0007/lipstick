@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_toolbar_title"/>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/color_dddddd"
+        android:layout_height="@dimen/dp_1"/>
+    <TextView
+        android:layout_marginTop="@dimen/dp_20"
+        android:textColor="@color/color_black"
+        android:text="扫码加客服微信"
+        android:textSize="@dimen/sp_18"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    
+    <ImageView
+        android:id="@+id/iv_qr_code"
+        android:scaleType="fitXY"
+        android:layout_margin="@dimen/dp_20"
+        android:layout_width="@dimen/dp_170"
+        android:layout_height="@dimen/dp_170" />
+    <TextView
+        android:id="@+id/tv_weixin_no"
+        android:gravity="center"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/color_333333"
+        android:background="@drawable/shape_11dp"
+        android:layout_width="@dimen/dp_270"
+        android:layout_height="@dimen/dp_35"
+        android:text="专属客服微信号："/>
+    <TextView
+        android:id="@+id/tv_copy"
+        android:layout_margin="@dimen/dp_27"
+        android:gravity="center"
+        android:layout_width="@dimen/dp_270"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/color_333333"
+        android:background="@drawable/shape_fafafa_bg"
+        android:layout_height="@dimen/dp_35"
+        android:text="复制"/>
+</LinearLayout>

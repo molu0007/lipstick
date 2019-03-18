@@ -87,11 +87,12 @@ public final class  Config {
     public final static String URL_PAY_PREPAY="/api/jucaib/pay/prepay ";
 
     /**
-     * /api/jucaib/pay/get_pay_result
-
-     getPayResult
-
-
+     * /api/jucaib/pay/get_pay_result  getPayResult
      */
     public final static String URL_PAY_RESULT="/api/jucaib/pay/get_pay_result ";
+    /**
+     * post  /api/jucaib/order/drawlipstick
+     *领取口红
+     */
+    public final static String URL_DRAWLINPSTICK="/api/jucaib/order/drawlipstick ";
 }

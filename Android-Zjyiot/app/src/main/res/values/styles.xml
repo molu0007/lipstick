@@ -12,6 +12,7 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="actionMenuTextColor">@color/color_white</item>
         <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:paddingTop">@dimen/my_status_bar_height</item>
         <item name="actionOverflowMenuStyle">@style/Toolbar.PopupTheme.OverflowMenu</item>
         <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
     </style>

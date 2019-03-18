@@ -1,8 +1,10 @@
 package com.qyy.app.lipstick.ui.activity.mall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -54,7 +56,7 @@ public class OrderActivity extends BaseActivity {
         setCenterTitleText("我的订单");
         mCommonAdapter=new CommonAdapter<OrderEntry.ListBean>(this,R.layout.item_order,mOrderEntries) {
             @Override
-            protected void convert(ViewHolder holder, OrderEntry.ListBean goodsBean, int position) {
+            protected void convert(ViewHolder holder, final OrderEntry.ListBean goodsBean, int position) {
                 holder.setText(R.id.tv_date,goodsBean.getAddTime());
                 Glide.with(OrderActivity.this).load(goodsBean.getGood().getPrimaryPicUrl()).into((ImageView) holder.getView(R.id.iv_goods));
                 holder.setText(R.id.tv_goods_name,goodsBean.getGood().getName());
@@ -78,6 +80,23 @@ public class OrderActivity extends BaseActivity {
                     holder.setBackgroundRes(R.id.tv_state,R.drawable.shape_bt_bg);
                     holder.setText(R.id.tv_state,"确认收货");
                 }
+                if ((goodsBean.getShippingName()==null||"".equals(goodsBean.getShippingName()))&&(goodsBean.getShippingNo()==null||"".equals(goodsBean.getShippingNo()))){
+                    holder.setVisible(R.id.ll_logistics_info,false);
+                }else {
+                    holder.setVisible(R.id.ll_logistics_info,true);
+                }
+                holder.setText(R.id.tv_logistics_company,"物流公司："+(goodsBean.getShippingName()==null?"":goodsBean.getShippingName()));
+                holder.setText(R.id.tv_logistics_no,"物流编号："+(goodsBean.getShippingNo()==null?"":goodsBean.getShippingNo()));
+                holder.getView(R.id.tv_state).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (goodsBean.getOrderStatus()==0){
+                            Intent intent=new Intent(OrderActivity.this,LinkmanActivity.class);
+                            intent.putExtra("orderId",goodsBean.getId());
+                            startActivity(intent);
+                        }
+                    }
+                });
             }
         };
         rvOrder.setLayoutManager(new LinearLayoutManager(this));
@@ -91,6 +110,14 @@ public class OrderActivity extends BaseActivity {
         getOrderList();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            getOrderList();
+        }
+    }
+
     private void getOrderList() {
         final Call<RespInfo<OrderEntry>> call = mMallApiService.getOrderList();
         call.enqueue(new NetResponseCall<OrderEntry>(this) {
@@ -101,6 +128,7 @@ public class OrderActivity extends BaseActivity {
                     mOrderEntries.clear();
                     mOrderEntries.addAll(data.getList());
                     mCommonAdapter.notifyDataSetChanged();
+
                 }
             }
 

@@ -95,6 +95,12 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
+        <activity android:name=".ui.activity.mall.QrCodeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.mall.LinkmanActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.activity.home.WebViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="${applicationId}.fileProvider"

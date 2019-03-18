@@ -4,6 +4,7 @@ import com.ibupush.molu.common.model.RespInfo;
 import com.qyy.app.lipstick.Config;
 import com.qyy.app.lipstick.model.response.order.OrderEntry;
 import com.qyy.app.lipstick.model.response.order.RechareGoods;
+import com.qyy.app.lipstick.model.response.order.ServiceInfo;
 
 import java.util.List;
 
@@ -30,4 +31,9 @@ public interface MallApiService {
     Call<RespInfo<String>> getPayParameter(@Query("rid")int rid,@Query("payType")String payType);
     @GET(Config.URL_PAY_RESULT)
     Call<RespInfo<Object>> getPayResult(@Query("orderId")String orderId);
+
+    @POST(Config.URL_DRAWLINPSTICK)
+    Call<RespInfo<Object>> saveAddress(@Query("orderId")int orderId,@Query("consignee")String consignee,@Query("address")String address,@Query("mobile")String mobile);
+    @GET(Config.URL_USER_ACTIVE)
+    Call<RespInfo<ServiceInfo>> getServiceInfo();
 }

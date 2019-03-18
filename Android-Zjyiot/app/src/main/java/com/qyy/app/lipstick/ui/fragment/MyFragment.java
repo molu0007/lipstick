@@ -21,6 +21,7 @@ import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
 import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
 import com.qyy.app.lipstick.ui.activity.mall.OrderActivity;
+import com.qyy.app.lipstick.ui.activity.mall.QrCodeActivity;
 import com.qyy.app.lipstick.ui.activity.mall.RechareActivity;
 import com.qyy.app.lipstick.utils.PrefsUtil;
 
@@ -94,6 +95,8 @@ public class MyFragment extends BaseFragment {
                 startActivity(intentRechare);
                 break;
             case R.id.ll_service:
+                Intent intentService=new Intent(getActivity(), QrCodeActivity.class);
+                startActivity(intentService);
                 break;
             case R.id.ll_out_login:
                 PrefsUtil.setToken("");

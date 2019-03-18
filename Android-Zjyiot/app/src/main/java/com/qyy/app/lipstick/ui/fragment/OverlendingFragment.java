@@ -1,5 +1,6 @@
 package com.qyy.app.lipstick.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.model.response.OrderRecord;
 import com.qyy.app.lipstick.model.response.home.OverlendingInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
+import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
 import com.qyy.app.lipstick.views.RecyclerViewDivider;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -56,11 +58,19 @@ public class OverlendingFragment extends BaseFragment {
         rvProject.setLayoutManager(new LinearLayoutManager(getActivity()));
         mInfoCommonAdapter=new CommonAdapter<OverlendingInfo>(getActivity(),R.layout.item_overlend,mOverlendingInfos) {
             @Override
-            protected void convert(ViewHolder holder, OverlendingInfo overlendingInfo, int position) {
+            protected void convert(ViewHolder holder, final OverlendingInfo overlendingInfo, int position) {
                 Glide.with(getActivity()).load(overlendingInfo.getDkIcon()).into((ImageView) holder.getView(R.id.iv_icon));
                 holder.setText(R.id.tv_name,overlendingInfo.getDkName());
                 holder.setText(R.id.tv_limit,overlendingInfo.getDkRange());
                 holder.setText(R.id.tv_appley,overlendingInfo.getDkApplyNum()+"人申请");
+                holder.setOnClickListener(R.id.tv_get, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra("url",overlendingInfo.getDkUrl());
+                        startActivity(intent);
+                    }
+                });
             }
         };
         rvProject.addItemDecoration(new RecyclerViewDivider(getActivity(),LinearLayoutManager.VERTICAL,10,getResources().getColor(R.color.color_dddddd)));
