@@ -17,6 +17,7 @@
         android:orientation="horizontal"
         android:layout_height="wrap_content">
         <com.qyy.app.lipstick.views.MDMRadioButton
+            android:paddingBottom="10dp"
             android:checked="true"
             android:background="@color/white"
             android:drawableTop="@drawable/selector_home_icon1"
@@ -31,6 +32,7 @@
             android:textColor="@drawable/rb__font_style"
             android:button="@null" />
         <com.qyy.app.lipstick.views.MDMRadioButton
+            android:paddingBottom="10dp"
             android:background="@color/white"
             android:drawableTop="@drawable/selector_home_icon2"
             android:gravity="top|center_horizontal"
@@ -44,6 +46,7 @@
             android:text="超贷"
             android:button="@null" />
         <com.qyy.app.lipstick.views.MDMRadioButton
+            android:paddingBottom="10dp"
             android:textColor="@drawable/rb__font_style"
             android:background="@color/white"
             android:drawableTop="@drawable/selector_home_icon3"
