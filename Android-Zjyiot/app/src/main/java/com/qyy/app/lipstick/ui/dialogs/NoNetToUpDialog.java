@@ -55,8 +55,7 @@ public class NoNetToUpDialog extends DialogFragment implements CallDelegate {
     }
 
     private void initView() {
-        mTvIccid.setText("ICCID:" + BaseApplication.iccid);
-        mTvSimNo.setText("卡号:" + BaseApplication.cardNo);
+
     }
 
     @Override

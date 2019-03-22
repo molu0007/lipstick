@@ -24,4 +24,7 @@ public interface LoginApiService {
     Call<RespInfo<String>> getSmsCode(@Query("phone")String phone);
     @POST(Config.URL_LOGIN)
     Call<RespInfo<LoginMoudle>> login(@Query("mobile")String mobile, @Query("code")String code);
+
+    @POST(Config.URL_USER_WX_LOGIN)
+    Call<RespInfo<LoginMoudle>> loginWX( @Query("code")String code);
 }

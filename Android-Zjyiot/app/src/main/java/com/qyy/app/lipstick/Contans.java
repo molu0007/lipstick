@@ -10,5 +10,5 @@ public class Contans {
 //    public  static String cardNo="1065934506031";
 //    public  static String accoundId= BaseApplication.accoundId;
 
-    public  static String WX_APP_ID= "wxba4fa838a1ac90ce";
+    public  static String WX_APP_ID= "wx9002438d10b58a95";
 }

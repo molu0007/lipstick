@@ -8,6 +8,15 @@ public class GoodsList {
     private List<GoodsBean> goods;
     private List<String> notice;
 
+    public int getJifen() {
+        return jifen;
+    }
+
+    public void setJifen(int jifen) {
+        this.jifen = jifen;
+    }
+
+    private int jifen;
     public List<BannerBean> getBanner() {
         return banner;
     }

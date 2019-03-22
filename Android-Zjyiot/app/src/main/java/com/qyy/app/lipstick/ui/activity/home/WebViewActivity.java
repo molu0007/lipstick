@@ -24,7 +24,6 @@ import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 public class WebViewActivity extends BaseActivity {
     WebView mWebview;
     WebSettings mWebSettings;
-    TextView beginLoading,endLoading,loading,mtitle;
 
     @Override
     protected int getContentViewId() {
@@ -51,26 +50,15 @@ public class WebViewActivity extends BaseActivity {
 
         //设置WebChromeClient类
         mWebview.setWebChromeClient(new WebChromeClient() {
-
-
             //获取网站标题
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 System.out.println("标题在这里");
                setCenterTitleText( title);
             }
-
-
             //获取加载进度
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-//                if (newProgress < 100) {
-//                    String progress = newProgress + "%";
-//                    loading.setText(progress);
-//                } else if (newProgress == 100) {
-//                    String progress = newProgress + "%";
-//                    loading.setText(progress);
-//                }
             }
         });
 
@@ -109,7 +97,6 @@ public class WebViewActivity extends BaseActivity {
         if (mWebview != null) {
             mWebview.loadDataWithBaseURL(null, "", "text/html", "utf-8", null);
             mWebview.clearHistory();
-
             ((ViewGroup) mWebview.getParent()).removeView(mWebview);
             mWebview.destroy();
             mWebview = null;

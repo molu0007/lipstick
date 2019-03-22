@@ -8,6 +8,7 @@ import com.ibupush.molu.common.net.LoggerIntercepter;
 import com.ibupush.molu.common.net.NetConstans;
 import com.ibupush.molu.common.util.LogUtil;
 
+import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
 import com.qyy.app.lipstick.utils.ResourceUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,14 +56,12 @@ public abstract class NetResponseCall<T> implements Callback<RespInfo<T>> {
             } else {
                 //接口调用失败
                 Intent intent;
-                if (NetConstans.CODE_NEED_LOGIN.equals(respInfo.errno) || NetConstans.CODE_LOGIN_ON_OTHER_DEVICE.equals(respInfo.errno)) {
+                if (NetConstans.CODE_NEED_LOGIN.equals(respInfo.errno)) {
                     //token失效or当前账号已在其他终端登陆-->调到登录页
-//                    if (!ActivityLifeCycleListener.loginCount) {
-//                        intent = new Intent(App.getAppContext(), LoginActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        App.getAppContext().startActivity(intent);
-//                        ActivityLifeCycleListener.loginCount = true;
-//                    }
+                    intent = new Intent(BaseApplication.getAppContext(), LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    BaseApplication.getAppContext().startActivity(intent);
+                    return;
                 }
                 //处理后台错误码
                 onFail(call, NetConstans.ERROR_CODE_SERVER, respInfo.errno, respInfo.errmsg);

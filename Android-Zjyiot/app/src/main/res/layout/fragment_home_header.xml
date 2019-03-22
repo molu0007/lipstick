@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="余额：0个积分"/>
         <TextView
+            android:id="@+id/tv_challenge"
             android:textSize="@dimen/sp_14"
             android:textColor="@color/color_333333"
             android:drawablePadding="@dimen/dp_4"

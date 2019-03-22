@@ -2,6 +2,7 @@ package com.qyy.app.lipstick.ui.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,13 +14,16 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.ibupush.molu.common.model.RespInfo;
 import com.ibupush.molu.common.net.HttpManager;
+import com.ibupush.molu.common.util.DeviceUtil;
 import com.ibupush.molu.common.util.TimeUtil;
 import com.qyy.app.lipstick.BaseApplication;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.adapter.OrderRechareAdapter;
 import com.qyy.app.lipstick.adapter.PollAdapter;
+import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.model.request.BehaviorEnty;
 import com.qyy.app.lipstick.model.response.OrderRecord;
 import com.qyy.app.lipstick.model.response.home.OverlendingInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
@@ -45,7 +49,7 @@ public class OverlendingFragment extends BaseFragment {
     @BindView(R.id.rv_project)
     RecyclerView rvProject;
     private HomeApiService mHomeApiService;
-
+    BehaviorApiService mBehaviorApiService;
     private CommonAdapter<OverlendingInfo> mInfoCommonAdapter;
     @Override
     protected int getContentViewId() {
@@ -55,6 +59,7 @@ public class OverlendingFragment extends BaseFragment {
     @Override
     protected void initView(@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.initView(container, savedInstanceState);
+        mBehaviorApiService=HttpManager.create(BehaviorApiService.class);
         rvProject.setLayoutManager(new LinearLayoutManager(getActivity()));
         mInfoCommonAdapter=new CommonAdapter<OverlendingInfo>(getActivity(),R.layout.item_overlend,mOverlendingInfos) {
             @Override
@@ -69,14 +74,34 @@ public class OverlendingFragment extends BaseFragment {
                         Intent intent=new Intent(getActivity(), WebViewActivity.class);
                         intent.putExtra("url",overlendingInfo.getDkUrl());
                         startActivity(intent);
+                        BehaviorEnty behaviorEnty=new BehaviorEnty();
+                        behaviorEnty.setDkId((int) overlendingInfo.getDkid());
+                        behaviorEnty.setSource("android");
+                        behaviorEnty.setDeviceId(DeviceUtil.getDeviceId());
+                        uploadBehavior(behaviorEnty);
                     }
                 });
+
             }
         };
         rvProject.addItemDecoration(new RecyclerViewDivider(getActivity(),LinearLayoutManager.VERTICAL,10,getResources().getColor(R.color.color_dddddd)));
         rvProject.setAdapter(mInfoCommonAdapter);
         hideToolbarNavigationIcon();
         setCenterTitleText("超贷");
+    }
+    private void uploadBehavior(BehaviorEnty behaviorEnty) {
+        Call<RespInfo<Object>> call =mBehaviorApiService.uploadBehavior(behaviorEnty);
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+
+            }
+
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
+            }
+        });
     }
 
 

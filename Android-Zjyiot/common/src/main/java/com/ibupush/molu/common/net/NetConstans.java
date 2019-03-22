@@ -43,7 +43,7 @@ public interface NetConstans {
     /**
      * 需要登录的错误码
      */
-    String CODE_NEED_LOGIN = "1064";
+    String CODE_NEED_LOGIN = "401";
     /**
      * 当前账号已在其他终端登陆
      */

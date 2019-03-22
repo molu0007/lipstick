@@ -19,10 +19,13 @@ public class PrefsUtil {
      */
     public static final String ACCOUNT = "accountId";
     /**
-     * 用户账号
+     * 用户token
      */
     public static final String Token = "token";
-
+    /**
+     * 用户积分
+     */
+    public static final String JIFEN = "jifen";
     public static String getToken() {
         if (token==null){
             return getString(Token);

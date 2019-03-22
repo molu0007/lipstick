@@ -1,6 +1,7 @@
 package com.qyy.app.lipstick.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.allure.lbanners.adapter.LBaseAdapter;
 import com.bumptech.glide.Glide;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
+import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
 
 /**
  * <p>类说明</p>
@@ -30,7 +32,7 @@ public class UrlImgAdapter implements LBaseAdapter<GoodsList.BannerBean> {
 
 
     @Override
-    public View getView(final LMBanners lBanners, final Context context, int position, GoodsList.BannerBean data) {
+    public View getView(final LMBanners lBanners, final Context context, int position, final GoodsList.BannerBean data) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.item_home_banner, null);
         ImageView imageView = (ImageView) view.findViewById(R.id.id_image);
         Glide.with(mContext).load(data.getImage_url()).into(imageView);
@@ -38,7 +40,9 @@ public class UrlImgAdapter implements LBaseAdapter<GoodsList.BannerBean> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //                        MainActivity.this.startActivity(new Intent(MainActivity.this,SeconedAc.class));
+                Intent intent= new Intent(mContext,WebViewActivity.class);
+                intent.putExtra("url",data.getLink());
+                 mContext.startActivity(intent);
             }
         });
         return view;

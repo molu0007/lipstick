@@ -64,7 +64,7 @@ public class StartActivity extends BaseActivity {
     }
 
     private void intentMainActivity(){
-        Intent intent=new Intent(StartActivity.this, LoginActivity.class);
+        Intent intent=new Intent(StartActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }

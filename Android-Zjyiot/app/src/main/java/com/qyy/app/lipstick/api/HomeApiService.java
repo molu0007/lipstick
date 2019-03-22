@@ -1,5 +1,6 @@
 package com.qyy.app.lipstick.api;
 
+import com.google.gson.JsonObject;
 import com.ibupush.molu.common.model.RespInfo;
 
 import java.util.List;
@@ -12,9 +13,13 @@ import com.qyy.app.lipstick.model.response.PackageInfo;
 import com.qyy.app.lipstick.model.response.PackageList;
 import com.qyy.app.lipstick.model.response.PayInfo;
 import com.qyy.app.lipstick.model.response.Status;
+import com.qyy.app.lipstick.model.response.home.GameBean;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
 import com.qyy.app.lipstick.model.response.home.OverlendingInfo;
 import com.qyy.app.lipstick.model.response.home.UserInfo;
+import com.qyy.app.lipstick.model.response.order.ServiceInfo;
+
+import org.json.JSONObject;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -67,9 +72,10 @@ public interface HomeApiService {
      * @return
      */
     @GET(Config.URL_HOME_GAME)
-    Call<RespInfo<Object>> initGame(@Query("gid")String gid);
+    Call<RespInfo<GameBean>> initGame(@Query("gid")long gid);
     @GET(Config.URL_USER_INFO)
     Call<RespInfo<UserInfo>> getUserInfo();
+
     @GET(Config.URL_USER_ACTIVE)
-    Call<RespInfo<Object>> getUserConfig();
+    Call<RespInfo<ServiceInfo>> getUserConfig();
 }

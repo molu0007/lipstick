@@ -11,18 +11,33 @@ import android.widget.TextView;
 
 import com.ibupush.molu.common.model.RespInfo;
 import com.ibupush.molu.common.net.HttpManager;
+import com.ibupush.molu.common.util.DeviceUtil;
 import com.ibupush.molu.common.util.ToastUtils;
+import com.qyy.app.lipstick.BaseApplication;
+import com.qyy.app.lipstick.Contans;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
+import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.LoginApiService;
+import com.qyy.app.lipstick.event.EventType;
+import com.qyy.app.lipstick.model.request.BehaviorEnty;
 import com.qyy.app.lipstick.model.response.login.LoginMoudle;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.home.MainActivity;
+import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
 import com.qyy.app.lipstick.utils.PrefsUtil;
+import com.qyy.app.lipstick.wxapi.WXEntryActivity;
+import com.tencent.mm.opensdk.constants.ConstantsAPI;
+import com.tencent.mm.opensdk.modelmsg.SendAuth;
+
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import retrofit2.Call;
+
+import static com.qyy.app.lipstick.event.EventType.WX_LOGIN_SUCCESS;
 
 public class LoginActivity extends BaseActivity {
     @BindView(R.id.et_account)
@@ -39,6 +54,8 @@ public class LoginActivity extends BaseActivity {
     TextView tvWeixin;
     private MyCountDownTimer myCountDownTimer;
     LoginApiService mLoginApiService;
+    private BehaviorApiService mBehaviorApiService;
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_login;
@@ -61,6 +78,7 @@ public class LoginActivity extends BaseActivity {
         //new倒计时对象,总共的时间,每隔多少秒更新一次时间
         myCountDownTimer = new MyCountDownTimer(60000,1000);
         mLoginApiService=HttpManager.create(LoginApiService.class);
+        mBehaviorApiService=HttpManager.create(BehaviorApiService.class);
         String account=PrefsUtil.getString(PrefsUtil.ACCOUNT);
         etAccount.setText(account==null?"":account);
     }
@@ -72,15 +90,37 @@ public class LoginActivity extends BaseActivity {
                 sendCode();
                 break;
             case R.id.tv_agreement:
+                Intent intent=new Intent(LoginActivity.this, WebViewActivity.class);
+                intent.putExtra("url","https://api.jucaib.com/xieyi.html");
+                startActivity(intent);
+
                 break;
             case R.id.tv_login:
 //                toMain();
                 toLogin();
                 break;
             case R.id.tv_weixin:
-
+                wxLogin();
                 break;
         }
+    }
+    public void wxLogin() {
+        if (!BaseApplication.mWxApi.isWXAppInstalled()) {
+            ToastUtils.showShortToast(this,"您还未安装微信客户端");
+            return;
+        }
+
+        BaseApplication.mWxApi.registerApp(Contans.WX_APP_ID);
+        SendAuth.Req req = new SendAuth.Req();
+        req.scope = "snsapi_userinfo";
+        req.state = "wechat_sdk_xb_live_state";//官方说明：用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止csrf攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加session进行校验
+        BaseApplication.mWxApi.sendReq(req);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        super.onResume();
     }
 
     private void sendCode() {
@@ -112,6 +152,12 @@ public class LoginActivity extends BaseActivity {
                 protected void onSuccess(Call<RespInfo<LoginMoudle>> call, LoginMoudle data) {
                   PrefsUtil.savaString(PrefsUtil.ACCOUNT,etAccount.getText().toString());
                   PrefsUtil.setToken(data.getToken());
+                    BehaviorEnty behaviorEnty=new BehaviorEnty();
+
+                    behaviorEnty.setSource("android");
+                    behaviorEnty.setDeviceId(DeviceUtil.getDeviceId());
+                    behaviorEnty.setUid(data.getUser().getUserId());
+                    uploadBehavior(behaviorEnty);
                   toMain();
                 }
 
@@ -122,6 +168,49 @@ public class LoginActivity extends BaseActivity {
             });
 
         }
+    }
+    private void uploadBehavior(BehaviorEnty behaviorEnty) {
+        Call<RespInfo<Object>> call =mBehaviorApiService.uploadBehavior(behaviorEnty);
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+
+            }
+
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
+            }
+        });
+    }
+    @Override
+    protected void onMessageReceived(EventType what, Object data) {
+        super.onMessageReceived(what, data);
+        if (what==WX_LOGIN_SUCCESS){
+            if (WXEntryActivity.resp.getType() == ConstantsAPI.COMMAND_SENDAUTH) {
+                final Call<RespInfo<LoginMoudle>> call = mLoginApiService.loginWX((String) data);
+                call.enqueue(new NetResponseCall<LoginMoudle>(this) {
+                    @Override
+                    protected void onSuccess(Call<RespInfo<LoginMoudle>> call, LoginMoudle data) {
+                        PrefsUtil.savaString(PrefsUtil.ACCOUNT,etAccount.getText().toString());
+                        PrefsUtil.savaInteger(PrefsUtil.JIFEN,data.getUser().getJifen());
+                        PrefsUtil.setToken(data.getToken());
+                        toMain();
+                    }
+
+                    @Override
+                    protected void onFail(Call<RespInfo<LoginMoudle>> call, int type, String code, String tip) {
+                        ToastUtils.showShortToast(getApplicationContext(),tip);
+                    }
+                });
+            }
+            ToastUtils.showShortToast(this,"登录成功！");
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     private void toMain() {

@@ -4,8 +4,22 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
-
-    defaultConfig {
+    // APK签名文件配置
+    signingConfigs {
+        config {
+            keyAlias 'appkey'
+            keyPassword '123456'
+            storeFile file('.\\key.jks')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        // 测试版，测试服务器环境，Log打开，debug模式打开，混淆关闭
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+        defaultConfig {
         applicationId "com.qyy.app.lipstick"
         minSdkVersion 19
         targetSdkVersion 26

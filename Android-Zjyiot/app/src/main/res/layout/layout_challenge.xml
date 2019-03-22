@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_marginRight="@dimen/dp_45"
+    android:layout_marginLeft="@dimen/dp_45"
+    android:padding="@dimen/dp_10"
+    android:background="@drawable/shape_white_10dp"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_marginTop="@dimen/dp_20"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp_18"
+            android:text="闯关说明"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_close"
+            android:paddingRight="@dimen/dp_10"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/gb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:text="1.闯关规则"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:text="    活动开始前选择您喜欢的口红 每关只需要将所显示的恐慌插满圆盘即可过关 连闯三关就可以获得心仪口红 获得商品后，请填写您的收获地址，我 们会议快递的形式将口红寄给您（仅限中国大陆地区）"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:text="2.商品说明"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:text="    我们所提供的商品均为官方正品,支持专柜验货"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:text="3.快递说明"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:text="    一般情况下,您闻关得到的商品提3订单后的3个工作日内我们会为您安排发货,如遇特殊情况我们会在公众发"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:textStyle="bold"
+        android:text="4.声明"
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@color/color_333333"
+        android:textSize="@dimen/sp_14"
+        android:text="    本次活动与苹果apple公司无关"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

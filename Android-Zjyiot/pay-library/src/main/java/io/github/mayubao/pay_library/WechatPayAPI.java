@@ -36,4 +36,14 @@ public class WechatPayAPI {
     public void sendPayReq(WechatPayReq wechatPayReq){
     	wechatPayReq.send();
     }
+
+
+
+    /**
+     * 发送微信login请求
+     * @param wechatPayReq
+     */
+    public void sendLoginReq(WechatPayReq wechatPayReq){
+        wechatPayReq.send();
+    }
 }

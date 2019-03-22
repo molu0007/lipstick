@@ -3,15 +3,26 @@ package com.qyy.app.lipstick.ui.activity.home;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 import android.widget.RadioGroup;
 
+import com.bumptech.glide.Glide;
+import com.ibupush.molu.common.model.RespInfo;
+import com.ibupush.molu.common.net.HttpManager;
+import com.ibupush.molu.common.util.LogUtil;
+import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
+import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.model.response.order.ServiceInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
+import com.qyy.app.lipstick.ui.activity.mall.QrCodeActivity;
 import com.qyy.app.lipstick.ui.fragment.MyFragment;
 import com.qyy.app.lipstick.ui.fragment.FragmentHelper;
 import com.qyy.app.lipstick.ui.fragment.HomeFragment;
 import com.qyy.app.lipstick.ui.fragment.OverlendingFragment;
+
+import retrofit2.Call;
 
 public class MainActivity extends BaseActivity {
     MainFragmentHelper mFragmentHelper;
@@ -57,6 +68,24 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
+        HomeApiService homeApiService= HttpManager.create(HomeApiService.class);
+        final Call<RespInfo<ServiceInfo>> call = homeApiService.getUserConfig();
+        call.enqueue(new NetResponseCall<ServiceInfo>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<ServiceInfo>> call, ServiceInfo data) {
+                if (data!=null){
+                  if (data.getShow_daicao()==1){
+                      LogUtil.d("mainactivity："+data.getShow_daicao());
+                      mRadioGroup.getChildAt(1).setVisibility(View.VISIBLE);
+                  }
+                }
+            }
+
+            @Override
+            protected void onFail(Call<RespInfo<ServiceInfo>> call, int type, String code, String tip) {
+
+            }
+        });
     }
 
 

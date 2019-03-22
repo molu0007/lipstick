@@ -13,6 +13,9 @@ import java.lang.ref.WeakReference;
 
 import com.qyy.app.lipstick.intercept.HeadersInterceptor;
 import com.qyy.app.lipstick.utils.PrefsUtil;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 
 /**
  * @author dengwg
@@ -22,6 +25,8 @@ public class BaseApplication extends Application{
     public  static String accoundId= "";
     public  static String iccid= "";
     public  static String cardNo= "";
+    public static IWXAPI mWxApi;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,8 +35,15 @@ public class BaseApplication extends Application{
         initBugly();
         initNet();
         initLog();
-    }
+        registToWX();
 
+    }
+    private void registToWX() {
+        //AppConst.WEIXIN.APP_ID是指你应用在微信开放平台上的AppID，记得替换。
+        mWxApi = WXAPIFactory.createWXAPI(this, Contans.WX_APP_ID, false);
+        // 将该app注册到微信
+        mWxApi.registerApp(Contans.WX_APP_ID);
+    }
     private void initBugly() {
         Bugly.init(getApplicationContext(), "c08fa87ca9", false);
         }
