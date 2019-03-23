@@ -93,7 +93,7 @@ public class OrderActivity extends BaseActivity {
                         if (goodsBean.getOrderStatus()==0){
                             Intent intent=new Intent(OrderActivity.this,LinkmanActivity.class);
                             intent.putExtra("orderId",goodsBean.getId());
-                            startActivity(intent);
+                            startActivityForResult(intent,100);
                         }
                     }
                 });

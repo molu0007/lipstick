@@ -80,6 +80,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:launchMode="singleTask"
             android:name=".ui.activity.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -114,6 +115,9 @@
         </provider>
         <activity
             android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true" />
     </application>
 

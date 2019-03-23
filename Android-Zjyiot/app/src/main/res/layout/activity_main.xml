@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:text="超贷"
+            android:text="贷超"
             android:button="@null" />
         <com.qyy.app.lipstick.views.MDMRadioButton
             android:paddingBottom="10dp"
@@ -54,7 +54,7 @@
             android:gravity="top|center_horizontal"
             android:drawablePadding="5dp"
             android:id="@+id/rb_tab_about"
-            android:text="关于"
+            android:text="我的"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

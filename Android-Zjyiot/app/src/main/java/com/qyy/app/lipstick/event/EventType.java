@@ -16,6 +16,13 @@ public enum EventType {
      * 微信登录成功
      */
    WX_LOGIN_SUCCESS,
+    /**
+     * 支付成功
+     */
+    WX_PAYSUCCESS,
 
-
+    /**
+     * 刷新积分
+     */
+    REFRESH_JIFEN
 }

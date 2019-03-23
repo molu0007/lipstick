@@ -27,9 +27,11 @@ import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.adapter.home.UrlImgAdapter;
 import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.event.EventType;
 import com.qyy.app.lipstick.model.response.home.GameBean;
 import com.qyy.app.lipstick.model.response.home.GoodsBean;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
+import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.ui.activity.WebViewGameActivity;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
 import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
@@ -122,7 +124,7 @@ public class HomeFragment extends BaseFragment {
         });
         tvPoint.setText("余额：" + mGoodsList.getJifen() + "个积分");
         //参数设置
-        vpHeader.isGuide(true);//是否为引导页
+        vpHeader.isGuide(false);//是否为引导页
         vpHeader.setAutoPlay(true);//自动播放
         vpHeader.setVertical(false);//是否可以垂直
         vpHeader.setScrollDurtion(222);//两页切换时间
@@ -261,8 +263,8 @@ public class HomeFragment extends BaseFragment {
            @Override
            protected void onSuccess(Call<RespInfo<GameBean>> call, GameBean data) {
                LogUtil.d(data.toString());
+               getData();
                try {
-
                    Intent intent=new Intent(getActivity(), WebViewGameActivity.class);
                    intent.putExtra("url",data.getGame_url());
                    startActivity(intent);
@@ -298,6 +300,13 @@ public class HomeFragment extends BaseFragment {
     protected void initListener() {
         super.initListener();
 
+    }
+    @Override
+    protected void onMessageReceived(EventType what, Object event) {
+        super.onMessageReceived(what, event);
+        if (what==EventType.REFRESH_JIFEN){
+            tvPoint.setText("余额：" + ((UserInfo)event).getJifen() + "个积分");
+        }
     }
 
     @OnClick(R.id.iv_game)

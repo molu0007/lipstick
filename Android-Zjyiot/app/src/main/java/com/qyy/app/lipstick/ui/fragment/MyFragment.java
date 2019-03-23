@@ -16,6 +16,7 @@ import com.ibupush.molu.common.net.HttpManager;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.event.EventType;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
 import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
@@ -79,6 +80,14 @@ public class MyFragment extends BaseFragment {
 
             }
         });
+    }
+
+    @Override
+    protected void onMessageReceived(EventType what, Object event) {
+        super.onMessageReceived(what, event);
+        if (what==EventType.REFRESH_JIFEN){
+            tvBalance.setText("积分余额："+((UserInfo)event).getJifen()+"");
+        }
     }
 
     @OnClick({R.id.ll_order, R.id.ll_rechare, R.id.ll_service, R.id.ll_out_login})

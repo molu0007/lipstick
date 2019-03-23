@@ -23,4 +23,6 @@
 
     <string name="default_cls">io.github.zjyiot.ui.Activity.home.StartActivity</string>
     <string name="component_cls">io.github.zjyiot.changeAppLogo</string>
+    <string name="pay_result_callback_msg">微信支付结果：%s</string>
+    <string name="app_tip">提示</string>
 </resources>

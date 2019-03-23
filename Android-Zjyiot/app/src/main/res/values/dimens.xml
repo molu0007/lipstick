@@ -5,7 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_sizes_34">34sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->>
-    <dimen name="status_bar_height">57dp</dimen>
+    <dimen name="status_bar_height">44dp</dimen>
     <dimen name="my_status_bar_height">0dp</dimen>
 
     <dimen name="dp_m_60">-60dp</dimen>

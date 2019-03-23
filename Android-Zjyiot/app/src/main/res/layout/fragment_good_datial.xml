@@ -7,7 +7,7 @@
     android:background="@drawable/shape_white_10dp"
     android:layout_height="match_parent">
     <RelativeLayout
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -94,6 +94,15 @@
             android:id="@+id/bt_top_up"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_36" />
+        <TextView
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_15"
+            android:gravity="center"
+            android:text="所有奖品和活动均与苹果公司无关"
+            android:textSize="@dimen/sp_12"
+            android:textColor="@color/color_999999"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>

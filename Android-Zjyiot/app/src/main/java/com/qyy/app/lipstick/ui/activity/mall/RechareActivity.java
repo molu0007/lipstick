@@ -8,21 +8,32 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.ibupush.molu.common.model.RespInfo;
 import com.ibupush.molu.common.net.HttpManager;
+import com.ibupush.molu.common.util.JsonUtil;
 import com.ibupush.molu.common.util.LogUtil;
 import com.ibupush.molu.common.util.ToastUtils;
 import com.qyy.app.lipstick.Contans;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
+import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.api.MallApiService;
+import com.qyy.app.lipstick.event.EmptyEvent;
+import com.qyy.app.lipstick.event.EventManager;
+import com.qyy.app.lipstick.event.EventType;
+import com.qyy.app.lipstick.event.MessageEvent;
+import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.model.response.order.AlipayResult;
 import com.qyy.app.lipstick.model.response.order.RechareGoods;
+import com.qyy.app.lipstick.model.response.order.WxPayInfo;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.dialogs.PaySelectDialog;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +43,10 @@ import butterknife.ButterKnife;
 import io.github.mayubao.pay_library.AliPayReq;
 import io.github.mayubao.pay_library.AliPayReq2;
 import io.github.mayubao.pay_library.PayAPI;
+import io.github.mayubao.pay_library.WechatPayReq;
 import retrofit2.Call;
+
+import static com.qyy.app.lipstick.event.EventType.REFRESH_JIFEN;
 
 /**
  * <p>类说明</p>
@@ -137,72 +151,91 @@ public class RechareActivity extends BaseActivity {
         });
     }
 
-    private void getPayParameter(String payType){
+    private void getPayParameter(final String payType){
         if (mRechareGoodsList.size()==0){
             return;
         }
-        Call<RespInfo<String>> call = mMallApiService.getPayParameter(mRechareGoodsList.get(checkPos).getId(),payType);
-        call.enqueue(new NetResponseCall<String>(this) {
+        Call<RespInfo<Object>> call = mMallApiService.getPayParameter(mRechareGoodsList.get(checkPos).getId(),payType);
+        call.enqueue(new NetResponseCall<Object>(this) {
             @Override
-            protected void onSuccess(Call<RespInfo<String>> call, String data) {
-                //1.创建支付宝支付订单的信息
-//                String rawAliOrderInfo = new AliPayReq2.AliOrderInfo()
-//                        .setPartner(Contans.WX_APP_ID) //商户PID || 签约合作者身份ID
-//                        .setSeller("1111")  // 商户收款账号 || 签约卖家支付宝账号
-//                        .setOutTradeNo("464434ada01310") //设置唯一订单号
-//                        .setSubject("") //设置订单标题
-//                        .setBody("254") //设置订单内容
-//                        .setPrice("0.1") //设置订单价格
-//                        .setCallbackUrl(callbackUrl) //设置回调链接
-//                        .createOrderInfo(); //创建支付宝支付订单信息
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+                if(payType.equals("alipay")){
+                    //TODO 这里需要从服务器获取用商户私钥签名之后的订单信息
+                    try {
 
-
-                //2.签名  支付宝支付订单的信息 ===>>>  商户私钥签名之后的订单信息
-                //TODO 这里需要从服务器获取用商户私钥签名之后的订单信息
-                String signAliOrderInfo =data;
-
-                //3.发送支付宝支付请求
-                final AliPayReq2 aliPayReq = new AliPayReq2.Builder()
-                        .with(RechareActivity.this)//Activity实例
-                        .setRawAliPayOrderInfo(null)//支付宝支付订单信息
-                        .setSignedAliPayOrderInfo(signAliOrderInfo) //设置 商户私钥RSA加密后的支付宝支付订单信息
-                        .create()//
-                        .setOnAliPayListener(null);//
-                PayAPI.getInstance().sendPayRequest(aliPayReq);
-
-                //关于支付宝支付的回调
-                aliPayReq.setOnAliPayListener(new AliPayReq2.OnAliPayListener() {
-                    @Override
-                    public void onPaySuccess(String resultInfo) {
-                        LogUtil.d(resultInfo);
-                        Gson gson =new Gson();
-                        AlipayResult alipayResult=gson.fromJson(resultInfo,AlipayResult.class);
-                        if (alipayResult!=null){
-                            String orderId=alipayResult.getAlipay_trade_app_pay_response().getOut_trade_no();
-                            getPayResult(orderId);
-                        }
+                        doAlipay((String) data);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
+                }else {
+                    String  str=JsonUtil.toJsonString(data);
+                    Gson gson=new Gson();
+                    WxPayInfo wxPayInfo=gson.fromJson(str,WxPayInfo.class);
+                    doWXpay(wxPayInfo);
+                }
 
-                    @Override
-                    public void onPayFailure(String resultInfo) {
-                        LogUtil.d(resultInfo);
-                    }
-
-                    @Override
-                    public void onPayConfirmimg(String resultInfo) {
-                        LogUtil.d(resultInfo);
-                    }
-
-                    @Override
-                    public void onPayCheck(String status) {
-                        LogUtil.d(status);
-                    }
-                });
             }
 
             @Override
-            protected void onFail(Call<RespInfo<String >> call, int type, String code, String tip) {
+            protected void onFail(Call<RespInfo<Object >> call, int type, String code, String tip) {
                 ToastUtils.showShortToast(RechareActivity.this,tip);
+            }
+        });
+    }
+
+    private void doWXpay( WxPayInfo wxPayInfo) {
+//1.创建微信支付请求
+        WechatPayReq wechatPayReq = new WechatPayReq.Builder()
+                .with(this) //activity实例
+                .setAppId(Contans.WX_APP_ID) //微信支付AppID
+                .setPartnerId(wxPayInfo.getPartnerid())//微信支付商户号
+                .setPrepayId(wxPayInfo.getPrepayid())//预支付码
+				.setPackageValue("Sign=WXPay")//"Sign=WXPay"
+                .setNonceStr(wxPayInfo.getNoncestr())
+                .setTimeStamp(wxPayInfo.getTimestamp())//时间戳
+                .setSign(wxPayInfo.getSign())//签名
+                .create();
+        //2.发送微信支付请求
+        PayAPI.getInstance().sendPayRequest(wechatPayReq);
+    }
+
+    private void doAlipay(String signAliOrderInfo) {
+        //3.发送支付宝支付请求
+        final AliPayReq2 aliPayReq = new AliPayReq2.Builder()
+                .with(RechareActivity.this)//Activity实例
+                .setRawAliPayOrderInfo(null)//支付宝支付订单信息
+                .setSignedAliPayOrderInfo(signAliOrderInfo) //设置 商户私钥RSA加密后的支付宝支付订单信息
+                .create()//
+                .setOnAliPayListener(null);//
+        PayAPI.getInstance().sendPayRequest(aliPayReq);
+
+        //关于支付宝支付的回调
+        aliPayReq.setOnAliPayListener(new AliPayReq2.OnAliPayListener() {
+            @Override
+            public void onPaySuccess(String resultInfo) {
+                LogUtil.d(resultInfo);
+                Gson gson =new Gson();
+                AlipayResult alipayResult=gson.fromJson(resultInfo,AlipayResult.class);
+                if (alipayResult!=null){
+                    String orderId=alipayResult.getAlipay_trade_app_pay_response().getOut_trade_no();
+                    getPayResult(orderId);
+                    refreshJiFen();
+                }
+            }
+
+            @Override
+            public void onPayFailure(String resultInfo) {
+                LogUtil.d(resultInfo);
+            }
+
+            @Override
+            public void onPayConfirmimg(String resultInfo) {
+                LogUtil.d(resultInfo);
+            }
+
+            @Override
+            public void onPayCheck(String status) {
+                LogUtil.d(status);
             }
         });
     }
@@ -221,4 +254,39 @@ public class RechareActivity extends BaseActivity {
             }
         });
     }
+
+    /**
+     * 微信支付成功消息
+     * @param what 消息标识
+     * @param data 消息体
+     */
+    @Override
+    protected void onMessageReceived(EventType what, Object data) {
+        super.onMessageReceived(what, data);
+        if (what==EventType.WX_PAYSUCCESS){
+//            getPayResult(data);da
+            refreshJiFen();
+        }
+
+    }
+
+    void refreshJiFen(){
+        HomeApiService mHomeApiService = HttpManager.create(HomeApiService.class);
+        final retrofit2.Call<RespInfo<UserInfo>> call = mHomeApiService.getUserInfo();
+        call.enqueue(new NetResponseCall<UserInfo>(this) {
+            @Override
+            protected void onSuccess(retrofit2.Call<RespInfo<UserInfo>> call, UserInfo data) {
+                if (data!=null){
+                 EventManager.post(new MessageEvent<UserInfo>(REFRESH_JIFEN,data));
+                 mTextView.setText("当前积分："+data.getJifen());
+                }
+            }
+
+            @Override
+            protected void onFail(retrofit2.Call<RespInfo<UserInfo>> call, int type, String code, String tip) {
+
+            }
+        });
+    }
+
 }

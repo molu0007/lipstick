@@ -87,7 +87,7 @@ public class OverlendingFragment extends BaseFragment {
         rvProject.addItemDecoration(new RecyclerViewDivider(getActivity(),LinearLayoutManager.VERTICAL,10,getResources().getColor(R.color.color_dddddd)));
         rvProject.setAdapter(mInfoCommonAdapter);
         hideToolbarNavigationIcon();
-        setCenterTitleText("超贷");
+        setCenterTitleText("贷超");
     }
     private void uploadBehavior(BehaviorEnty behaviorEnty) {
         Call<RespInfo<Object>> call =mBehaviorApiService.uploadBehavior(behaviorEnty);

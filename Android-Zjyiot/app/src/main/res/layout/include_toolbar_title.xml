@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:text=""
-      android:textSize="@dimen/sp_18"
+            android:textSize="@dimen/sp_18"
             android:textColor="@color/color_black"
             />
     </android.support.v7.widget.Toolbar>

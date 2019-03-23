@@ -152,12 +152,6 @@ public class LoginActivity extends BaseActivity {
                 protected void onSuccess(Call<RespInfo<LoginMoudle>> call, LoginMoudle data) {
                   PrefsUtil.savaString(PrefsUtil.ACCOUNT,etAccount.getText().toString());
                   PrefsUtil.setToken(data.getToken());
-                    BehaviorEnty behaviorEnty=new BehaviorEnty();
-
-                    behaviorEnty.setSource("android");
-                    behaviorEnty.setDeviceId(DeviceUtil.getDeviceId());
-                    behaviorEnty.setUid(data.getUser().getUserId());
-                    uploadBehavior(behaviorEnty);
                   toMain();
                 }
 
@@ -169,20 +163,20 @@ public class LoginActivity extends BaseActivity {
 
         }
     }
-    private void uploadBehavior(BehaviorEnty behaviorEnty) {
-        Call<RespInfo<Object>> call =mBehaviorApiService.uploadBehavior(behaviorEnty);
-        call.enqueue(new NetResponseCall<Object>(this) {
-            @Override
-            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
-
-            }
-
-            @Override
-            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
-
-            }
-        });
-    }
+//    private void uploadBehavior(BehaviorEnty behaviorEnty) {
+//        Call<RespInfo<Object>> call =mBehaviorApiService.uploadBehavior(behaviorEnty);
+//        call.enqueue(new NetResponseCall<Object>(this) {
+//            @Override
+//            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+//
+//            }
+//
+//            @Override
+//            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+//
+//            }
+//        });
+//    }
     @Override
     protected void onMessageReceived(EventType what, Object data) {
         super.onMessageReceived(what, data);
@@ -216,6 +210,7 @@ public class LoginActivity extends BaseActivity {
     private void toMain() {
         Intent intent=new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     private class MyCountDownTimer extends CountDownTimer {
