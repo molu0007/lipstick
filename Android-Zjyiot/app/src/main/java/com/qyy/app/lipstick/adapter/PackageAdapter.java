@@ -20,7 +20,7 @@ public class PackageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {//必须实现
-//        Fragment fragment=PackageTopUpFragment.newInstance(position);
+//        Fragment fragment=TopUpFragment.newInstance(position);
         return mFragments.get(position);
     }
 

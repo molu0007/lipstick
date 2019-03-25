@@ -8,10 +8,18 @@
         android:layout_width="match_parent"
         android:background="@color/color_dddddd"
         android:layout_height="@dimen/dp_1"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_order"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+        <include
+            android:id="@+id/view_emty"
+            layout="@layout/layout_emty"/>
+    </FrameLayout>
+
 </LinearLayout>

@@ -186,6 +186,19 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
+<View
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"/>
+<TextView
+    android:gravity="center"
+    android:text="Copyright@2019"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginBottom="@dimen/dp_20"
+        android:gravity="center"
+        android:text="北京青赢芽科技有限公司版权所有"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

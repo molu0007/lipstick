@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.widget.ImageView;
@@ -25,12 +26,7 @@ import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
  * @date 2018/3/23
  */
 public class StartActivity extends BaseActivity {
-    @BindView(R.id.imageView)
-    ImageView mImageView;
-    HomeApiService mHomeApiService;
-    private PackageManager packageManager;
-    private ComponentName defaultComponent;
-    private ComponentName changeComponent;
+
 
     @Override
     protected int getContentViewId() {
@@ -40,112 +36,55 @@ public class StartActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
-        intentMainActivity();
+        timerStart();
     }
 
-    /**
-     * 获取设备iccid权限
-     */
-    TelephonyManager tm;
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-
-        if (requestCode == 1) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                getAccountId();
-            } else {
-                intentMainActivity();
-                ToastUtils.showShortToast(BaseApplication.getAppContext(), "权限已拒绝");
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
 
     private void intentMainActivity(){
         Intent intent=new Intent(StartActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
-
-    private void showNormalDialog(){
-        /* @setIcon 设置对话框图标
-         * @setTitle 设置对话框标题
-         * @setMessage 设置对话框消息提示
-         * setXXX方法返回Dialog对象，因此可以链式设置属性
+    /**
+     * 倒数计时器
+     */
+    private CountDownTimer timer = new CountDownTimer(2 * 1000, 1000) {
+        /**
+         * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
+         * @param millisUntilFinished
          */
-        final AlertDialog.Builder normalDialog =
-                new AlertDialog.Builder(StartActivity.this);
-        normalDialog.setIcon(R.mipmap.ic_launcher1);
-        normalDialog.setTitle("提示");
-        normalDialog.setMessage("未找到SIM卡!");
-        normalDialog.setPositiveButton("确定",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //...To-do
-                        intentMainActivity();
-                    }
-                });
-        // 显示
-        normalDialog.show();
-    }
-    /**
-     * @param accountId
-     */
-    private void switchIcon(int accountId) {
-        packageManager = getApplicationContext().getPackageManager();
-        //拿到当前App_StartActivity组件
-        defaultComponent = new ComponentName(getBaseContext(),getResources().getString(R.string.default_cls) );  //拿到默认的组件
-        switch (accountId){
-            case 123:
-                //拿到我注册的别名changeLogo组件
-                changeComponent = new ComponentName(getBaseContext(),getResources().getString(R.string.component_cls));
-                break;
-        }
-        if (changeComponent!=null){
-            disableComponent(defaultComponent);
-            enableComponent(changeComponent);
-        }
-    }
-    /**
-     * 启用组件
-     *
-     * @param componentName
-     */
-    private void enableComponent(ComponentName componentName) {
-        try {
-            int state = packageManager.getComponentEnabledSetting(componentName);
-            if (state == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) {
-                //已经启用
-                return;
-            }
-            packageManager.setComponentEnabledSetting(componentName,
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                    PackageManager.DONT_KILL_APP);
-        }catch (Exception e){
+        @Override
+        public void onTick(long millisUntilFinished) {
 
         }
+
+        /**
+         * 倒计时完成时被调用
+         */
+        @Override
+        public void onFinish() {
+            intentMainActivity();
+        }
+    };
+
+
+    /**
+     * 取消倒计时
+     */
+    public void timerCancel() {
+        timer.cancel();
     }
 
     /**
-     * 禁用组件
-     *
-     * @param componentName
+     * 开始倒计时
      */
-    private void disableComponent(ComponentName componentName) {
-        try {
-            int state = packageManager.getComponentEnabledSetting(componentName);
-            if (state == PackageManager.COMPONENT_ENABLED_STATE_DISABLED) {
-                //已经禁用
-                return;
-            }
-            packageManager.setComponentEnabledSetting(componentName,
-                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                    PackageManager.DONT_KILL_APP);
-        }catch (Exception e){
+    public void timerStart() {
+        timer.start();
+    }
 
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
     }
 }

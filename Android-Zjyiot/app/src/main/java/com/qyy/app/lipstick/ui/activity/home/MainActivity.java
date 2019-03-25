@@ -21,6 +21,7 @@ import com.qyy.app.lipstick.ui.fragment.MyFragment;
 import com.qyy.app.lipstick.ui.fragment.FragmentHelper;
 import com.qyy.app.lipstick.ui.fragment.HomeFragment;
 import com.qyy.app.lipstick.ui.fragment.OverlendingFragment;
+import com.qyy.app.lipstick.ui.fragment.TopUpFragment;
 
 import retrofit2.Call;
 
@@ -38,6 +39,9 @@ public class MainActivity extends BaseActivity {
                 switch (i){
                     case R.id.rb_tab_home:
                         mFragmentHelper.toggleFragment(TAG_HOME);
+                        break;
+                    case R.id.rb_tab_daichao:
+                        mFragmentHelper.toggleFragment(TAG_DAIC);
                         break;
                     case R.id.rb_tab_top_up:
                         mFragmentHelper.toggleFragment(TAG_TOP_UP);
@@ -98,11 +102,15 @@ public class MainActivity extends BaseActivity {
      */
     public static final String TAG_HOME = "TAG_HOME";
     /**
-     * 场馆
+     * 贷超
+     */
+    public static final String TAG_DAIC= "TAG_DAIC";
+    /**
+     * 充值
      */
     public static final String TAG_TOP_UP = "TAG_TOP_UP";
     /**
-     * 赛事
+     * 我的
      */
     public static final String TAG_ABOUT = "TAG_ABOUT";
     private class MainFragmentHelper extends FragmentHelper {
@@ -118,7 +126,10 @@ public class MainActivity extends BaseActivity {
                 case TAG_HOME:
                     fragment = new HomeFragment();
                     break;
-                case TAG_TOP_UP://圈子
+                case TAG_TOP_UP://充值
+                    fragment = new TopUpFragment();
+                    break;
+                case TAG_DAIC://贷超
                     fragment = new OverlendingFragment();
                     break;
                 case TAG_ABOUT:

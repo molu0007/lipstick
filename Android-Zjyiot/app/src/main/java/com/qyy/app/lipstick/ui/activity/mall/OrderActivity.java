@@ -40,7 +40,7 @@ import retrofit2.Call;
 public class OrderActivity extends BaseActivity {
     @BindView(R.id.rv_order)
     RecyclerView rvOrder;
-
+    View emtyView;
     List<OrderEntry.ListBean> mOrderEntries=new ArrayList<>();
     CommonAdapter<OrderEntry.ListBean> mCommonAdapter;
     MallApiService mMallApiService;
@@ -54,6 +54,7 @@ public class OrderActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         setCenterTitleText("我的订单");
+        emtyView=findViewById(R.id.view_emty);
         mCommonAdapter=new CommonAdapter<OrderEntry.ListBean>(this,R.layout.item_order,mOrderEntries) {
             @Override
             protected void convert(ViewHolder holder, final OrderEntry.ListBean goodsBean, int position) {
@@ -125,10 +126,16 @@ public class OrderActivity extends BaseActivity {
             protected void onSuccess(Call<RespInfo<OrderEntry>> call, OrderEntry data) {
                 LogUtil.d(data.toString());
                 if (data!=null&&data.getList()!=null){
+                    if (data.getList().size()==0){
+                        emtyView.setVisibility(View.VISIBLE);
+                        return;
+                    }
+                    emtyView.setVisibility(View.GONE);
                     mOrderEntries.clear();
                     mOrderEntries.addAll(data.getList());
                     mCommonAdapter.notifyDataSetChanged();
-
+                }else {
+                    emtyView.setVisibility(View.VISIBLE);
                 }
             }
 

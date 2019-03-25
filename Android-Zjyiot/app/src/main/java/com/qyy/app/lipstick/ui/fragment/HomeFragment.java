@@ -37,6 +37,7 @@ import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
 import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
 import com.qyy.app.lipstick.ui.activity.mall.RechareActivity;
 import com.qyy.app.lipstick.ui.dialogs.CustomDialog;
+import com.qyy.app.lipstick.utils.PrefsUtil;
 import com.qyy.app.lipstick.views.UPMarqueeView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -122,6 +123,7 @@ public class HomeFragment extends BaseFragment {
                 customDialogTip.show();
             }
         });
+        PrefsUtil.savaInteger(PrefsUtil.JIFEN, mGoodsList.getJifen());
         tvPoint.setText("余额：" + mGoodsList.getJifen() + "个积分");
         //参数设置
         vpHeader.isGuide(false);//是否为引导页
@@ -305,6 +307,7 @@ public class HomeFragment extends BaseFragment {
     protected void onMessageReceived(EventType what, Object event) {
         super.onMessageReceived(what, event);
         if (what==EventType.REFRESH_JIFEN){
+            PrefsUtil.savaInteger(PrefsUtil.JIFEN, (int) ((UserInfo)event).getJifen());
             tvPoint.setText("余额：" + ((UserInfo)event).getJifen() + "个积分");
         }
     }

@@ -39,12 +39,27 @@
             android:gravity="top|center_horizontal"
             android:drawablePadding="5dp"
             android:textColor="@drawable/rb__font_style"
-            android:id="@+id/rb_tab_top_up"
+            android:id="@+id/rb_tab_daichao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:text="贷超"
+            android:button="@null" />
+        <com.qyy.app.lipstick.views.MDMRadioButton
+            android:visibility="visible"
+            android:paddingBottom="10dp"
+            android:background="@color/white"
+            android:drawableTop="@drawable/selector_home_icon2"
+            android:gravity="top|center_horizontal"
+            android:drawablePadding="5dp"
+            android:textColor="@drawable/rb__font_style"
+            android:id="@+id/rb_tab_top_up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:text="充值"
             android:button="@null" />
         <com.qyy.app.lipstick.views.MDMRadioButton
             android:paddingBottom="10dp"
