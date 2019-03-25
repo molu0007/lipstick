@@ -34,6 +34,7 @@ import com.qyy.app.lipstick.model.response.home.GoodsList;
 import com.qyy.app.lipstick.model.response.home.UserInfo;
 import com.qyy.app.lipstick.ui.activity.WebViewGameActivity;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
+import com.qyy.app.lipstick.ui.activity.home.MainActivity;
 import com.qyy.app.lipstick.ui.activity.home.WebViewActivity;
 import com.qyy.app.lipstick.ui.activity.mall.RechareActivity;
 import com.qyy.app.lipstick.ui.dialogs.CustomDialog;
@@ -245,8 +246,7 @@ public class HomeFragment extends BaseFragment {
                 .addViewOnclick(R.id.bt_top_up, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent =new Intent(getActivity(), RechareActivity.class);
-                        startActivity(intent);
+                        ((MainActivity)getActivity()).toUp();
                         customDialogGoods.dismiss();
                     }
                 })

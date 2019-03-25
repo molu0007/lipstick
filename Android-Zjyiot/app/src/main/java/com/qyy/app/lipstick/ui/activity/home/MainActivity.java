@@ -26,7 +26,7 @@ import com.qyy.app.lipstick.ui.fragment.TopUpFragment;
 import retrofit2.Call;
 
 public class MainActivity extends BaseActivity {
-    MainFragmentHelper mFragmentHelper;
+    public MainFragmentHelper mFragmentHelper;
     private RadioGroup mRadioGroup;
 
 
@@ -92,6 +92,9 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    public void toUp(){
+        mFragmentHelper.toggleFragment(MainActivity.TAG_TOP_UP);
+    }
 
 
     /**

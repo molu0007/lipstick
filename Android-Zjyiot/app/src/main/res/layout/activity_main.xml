@@ -50,7 +50,7 @@
             android:visibility="visible"
             android:paddingBottom="10dp"
             android:background="@color/white"
-            android:drawableTop="@drawable/selector_home_icon2"
+            android:drawableTop="@drawable/selector_home_icon4"
             android:gravity="top|center_horizontal"
             android:drawablePadding="5dp"
             android:textColor="@drawable/rb__font_style"
