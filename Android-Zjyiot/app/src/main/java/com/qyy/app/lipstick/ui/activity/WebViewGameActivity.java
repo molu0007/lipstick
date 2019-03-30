@@ -64,7 +64,7 @@ public class WebViewGameActivity extends BaseActivity {
     private void initWebSetting() {
         //声明WebSettings子类
         WebSettings webSettings = mWebview.getSettings();
-
+        webSettings.setMediaPlaybackRequiresUserGesture(false);
         //如果访问的页面中要与Javascript交互，则webview必须设置支持Javascript
         webSettings.setJavaScriptEnabled(true);
         // 修改ua使得web端正确判断

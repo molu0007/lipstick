@@ -1,8 +1,12 @@
 package com.qyy.app.lipstick.ui.fragment;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -152,6 +156,7 @@ public class TopUpFragment extends BaseFragment {
             }
         });
     }
+
 
     private void getPayParameter(final String payType){
         if (mRechareGoodsList.size()==0){

@@ -1,10 +1,15 @@
 package com.qyy.app.lipstick.ui.fragment;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
@@ -84,7 +89,21 @@ public class HomeFragment extends BaseFragment {
     protected int getContentViewId() {
         return R.layout.fragment_home;
     }
+    //申请录音权限
+    private static final int GET_RECODE_AUDIO = 1;
+    private static String[] PERMISSION_AUDIO = {
+            Manifest.permission.RECORD_AUDIO
+    };
+    /*
+     * 申请录音权限*/
+    public static void verifyAudioPermissions(Activity activity) {
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.
+                WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);//权限返回码为1
+        }
 
+    }
     @Override
     protected void initView(@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.initView(container, savedInstanceState);
@@ -95,8 +114,7 @@ public class HomeFragment extends BaseFragment {
         setCenterTitleText("首页");
         hideToolbarNavigationIcon();
         initGoodDialog();
-        //网络图片
-
+        verifyAudioPermissions(getActivity());
     }
 
     CustomDialog customDialogTip;
@@ -267,6 +285,7 @@ public class HomeFragment extends BaseFragment {
                LogUtil.d(data.toString());
                getData();
                try {
+                   verifyAudioPermissions(getActivity());
                    Intent intent=new Intent(getActivity(), WebViewGameActivity.class);
                    intent.putExtra("url",data.getGame_url());
                    startActivity(intent);
@@ -314,6 +333,7 @@ public class HomeFragment extends BaseFragment {
 
     @OnClick(R.id.iv_game)
     public void onViewClicked() {
+        verifyAudioPermissions(getActivity());
         Intent intent=new Intent(getActivity(), WebViewGameActivity.class);
         intent.putExtra("url","https://api.jucaib.com/taste.html?h5=1");
         startActivity(intent);
