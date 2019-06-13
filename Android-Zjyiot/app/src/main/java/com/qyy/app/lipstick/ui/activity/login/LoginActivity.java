@@ -83,6 +83,7 @@ public class LoginActivity extends BaseActivity {
         etAccount.setText(account==null?"":account);
     }
 
+
     @OnClick({R.id.bt_send_code, R.id.tv_agreement, R.id.tv_login, R.id.tv_weixin})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -205,6 +206,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        myCountDownTimer.cancel();
     }
 
     private void toMain() {

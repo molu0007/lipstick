@@ -18,6 +18,9 @@ android {
         debug {
             signingConfig signingConfigs.config
         }
+        release{
+            signingConfig signingConfigs.config
+        }
     }
         defaultConfig {
         applicationId "com.qyy.app.lipstick"

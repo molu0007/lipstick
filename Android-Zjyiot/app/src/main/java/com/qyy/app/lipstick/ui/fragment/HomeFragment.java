@@ -306,8 +306,8 @@ public class HomeFragment extends BaseFragment {
         Glide.with(getActivity()).load(goodsBean.getPrimaryPicUrl()).into(mImageViewGoods);
         mTvName.setText(goodsBean.getName());
         mTvBrand.setText(goodsBean.getBrand());
-        mTvPrice.setText("专柜价 ￥"+goodsBean.getMarketPrice());
-        mBtChallenge.setText(goodsBean.getCounterPrice()+"积分挑战");
+        mTvPrice.setText("专柜价 ￥"+goodsBean.getCounterPrice());
+        mBtChallenge.setText(goodsBean.getMarketPrice()+"积分挑战");
         mTvColor.setText(goodsBean.getColorName());
         try {
             mVColor.setBackgroundColor(Color.parseColor("#"+goodsBean.getColorValue()));
