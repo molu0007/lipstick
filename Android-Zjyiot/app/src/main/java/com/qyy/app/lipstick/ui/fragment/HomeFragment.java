@@ -227,7 +227,7 @@ public class HomeFragment extends BaseFragment {
                         showGoodDialog(goodsBean);
                     }
                 });
-                holder.setText(R.id.tv_integral, "" + goodsBean.getMarketPrice() + "积分购买");
+                holder.setText(R.id.tv_integral, "" + (int)goodsBean.getMarketPrice() + "积分挑战");
             }
         };
         HeaderAndFooterWrapper mHeaderAndFooterWrapper = new HeaderAndFooterWrapper(mAdapter);

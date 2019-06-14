@@ -9,7 +9,7 @@
         android:layout_marginBottom="@dimen/dp_1"
         android:layout_marginTop="@dimen/dp_10"
         android:layout_marginRight="@dimen/dp_10"
-        android:layout_height="@dimen/dp_210"
+        android:layout_height="210dp"
         android:elevation="@dimen/dp_1"
         >
         <LinearLayout
@@ -42,7 +42,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:id="@+id/tv_buy_name"
-                android:textSize="@dimen/sp_11"
+                android:textSize="@dimen/sp_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_333333"/>

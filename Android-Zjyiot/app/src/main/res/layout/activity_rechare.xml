@@ -53,7 +53,7 @@
             android:layout_marginTop="@dimen/dp_10"
             android:textColor="@color/color_333333"
             android:textSize="14sp"
-            android:text="1.第一次充值的用户可享受双倍充值福利 例如：充值10元应获得70积分 首次充值则会获得140积分"
+            android:text="1.第一次充值的用户可享受双倍充值福利 例如：充值6元应获得36积分 首次充值则会获得72积分"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

@@ -10,9 +10,10 @@
         android:background="@drawable/shape_fafafa_bg"
         android:layout_width="match_parent"
         android:gravity="center"
-        android:layout_height="@dimen/dp_45"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
+            android:layout_marginTop="@dimen/dp_5"
         android:text="60"
             android:textSize="@dimen/sp_15"
         android:textColor="@color/color_333333"
@@ -21,11 +22,13 @@
         android:layout_height="wrap_content" />
 
         <TextView
-            android:text="46积分"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:text="46积分（首充翻倍）"
             android:textColor="@color/color_333333"
             android:id="@+id/tv_integral"
-            android:textSize="@dimen/sp_12"
+            android:textSize="@dimen/sp_10"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" /></LinearLayout>
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
 </LinearLayout>
