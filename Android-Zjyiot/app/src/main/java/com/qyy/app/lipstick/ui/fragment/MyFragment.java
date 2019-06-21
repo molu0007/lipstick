@@ -89,6 +89,11 @@ public class MyFragment extends BaseFragment {
             tvBalance.setText("积分余额："+((UserInfo)event).getJifen()+"");
         }
     }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        tvBalance.setText("积分余额：" + PrefsUtil.getInteger(PrefsUtil.JIFEN, 0)+ "");
+    }
 
     @OnClick({R.id.ll_order, R.id.ll_rechare, R.id.ll_service, R.id.ll_out_login})
     public void onViewClicked(View view) {

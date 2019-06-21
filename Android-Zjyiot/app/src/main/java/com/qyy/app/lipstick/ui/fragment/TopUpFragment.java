@@ -276,6 +276,11 @@ public class TopUpFragment extends BaseFragment {
         }
 
     }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mTextView.setText("当前积分：" + PrefsUtil.getInteger(PrefsUtil.JIFEN, 0)+ "");
+    }
 
     void refreshJiFen(){
         HomeApiService mHomeApiService = HttpManager.create(HomeApiService.class);

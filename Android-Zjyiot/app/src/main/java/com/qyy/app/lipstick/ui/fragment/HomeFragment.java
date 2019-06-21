@@ -32,7 +32,9 @@ import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.adapter.home.UrlImgAdapter;
 import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.event.EventManager;
 import com.qyy.app.lipstick.event.EventType;
+import com.qyy.app.lipstick.event.MessageEvent;
 import com.qyy.app.lipstick.model.response.home.GameBean;
 import com.qyy.app.lipstick.model.response.home.GoodsBean;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
@@ -60,6 +62,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import retrofit2.Call;
+
+import static com.qyy.app.lipstick.event.EventType.REFRESH_JIFEN;
 
 /**
  * @author dengwg
@@ -154,6 +158,12 @@ public class HomeFragment extends BaseFragment {
         vpHeader.setAdapter(new UrlImgAdapter(getActivity()), mGoodsList.getBanner());
         upmvTextview.setViews(getViews());
         return headerView;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        tvPoint.setText("余额：" + PrefsUtil.getInteger(PrefsUtil.JIFEN, 0)+ "个积分");
     }
 
     /**
