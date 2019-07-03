@@ -37,6 +37,11 @@ public class StartActivity extends BaseActivity {
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
         timerStart();
+        recordBehaver();
+    }
+
+    private void recordBehaver() {
+
     }
 
 

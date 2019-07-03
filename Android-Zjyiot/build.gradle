@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
         maven {
             url 'https://maven.google.com/'
             name 'Google'
@@ -20,6 +21,7 @@ allprojects {
     repositories {
         jcenter()
         mavenCentral()
+        maven { url 'https://dl.bintray.com/umsdk/release' }
 //        maven { url "https://maven.google.com" }
         maven {
             url 'https://maven.google.com/'

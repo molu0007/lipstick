@@ -15,6 +15,8 @@ import com.qyy.app.lipstick.intercept.HeadersInterceptor;
 import com.qyy.app.lipstick.utils.PrefsUtil;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.commonsdk.UMConfigure;
 
 
 /**
@@ -35,9 +37,18 @@ public class BaseApplication extends Application{
         initBugly();
         initNet();
         initLog();
+        initUmeng();
         registToWX();
 
     }
+
+    private void initUmeng() {
+        // 初始化SDK
+        UMConfigure.init(this, "5d0a491d0cafb2d76600046b", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, null);
+        // 选用MANUAL页面采集模式
+//        MobclickAgent.set(MobclickAgent.PageMode.MANUAL);
+    }
+
     private void registToWX() {
         //AppConst.WEIXIN.APP_ID是指你应用在微信开放平台上的AppID，记得替换。
         mWxApi = WXAPIFactory.createWXAPI(this, Contans.WX_APP_ID, false);

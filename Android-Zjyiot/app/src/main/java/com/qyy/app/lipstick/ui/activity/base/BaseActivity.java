@@ -42,6 +42,7 @@ import com.qyy.app.lipstick.event.MessageEvent;
 import com.qyy.app.lipstick.utils.StatusBarUtil;
 import com.qyy.app.lipstick.views.UploadingView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.umeng.analytics.MobclickAgent;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -177,6 +178,7 @@ public abstract class BaseActivity extends AppCompatActivity implements CallDele
     protected void onResume() {
         super.onResume();
 //        StatService.onResume(this);
+        MobclickAgent.onResume(this);
         if (BuildConfig.DEBUG) {
             LogUtil.v(TAGS.UI_LIFECYCLE, "onResume=" + TAG);
         }
@@ -186,6 +188,7 @@ public abstract class BaseActivity extends AppCompatActivity implements CallDele
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
 //        StatService.onPause(this);
         if (BuildConfig.DEBUG) {
             LogUtil.v(TAGS.UI_LIFECYCLE, "onPause=" + TAG);

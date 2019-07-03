@@ -41,6 +41,7 @@ import com.qyy.app.lipstick.event.MessageEvent;
 import com.qyy.app.lipstick.views.ProgressFrameLayout;
 import com.qyy.app.lipstick.views.UploadingView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -140,6 +141,7 @@ public abstract class BaseFragment extends Fragment implements CallDelegate {
         if (BuildConfig.DEBUG) {
             LogUtil.v(TAG, "onPause...");
         }
+        MobclickAgent.onPause(getActivity());
         if (mIsSupportVisible && isFragmentVisible(this)) {
             dispatchSupportVisible(false, false);
         }
@@ -148,6 +150,8 @@ public abstract class BaseFragment extends Fragment implements CallDelegate {
     @Override
     public void onResume() {
         super.onResume();
+        MobclickAgent.onResume(getActivity());
+
         if (BuildConfig.DEBUG) {
             LogUtil.v(TAG, "onResume...");
         }
