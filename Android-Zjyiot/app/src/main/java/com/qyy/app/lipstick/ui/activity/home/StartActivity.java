@@ -10,14 +10,21 @@ import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
 import android.widget.ImageView;
 
+import com.ibupush.molu.common.model.RespInfo;
+import com.ibupush.molu.common.net.HttpManager;
+import com.ibupush.molu.common.util.LogUtil;
 import com.ibupush.molu.common.util.ToastUtils;
 
 import butterknife.BindView;
+import retrofit2.Call;
 
 import com.qyy.app.lipstick.BaseApplication;
 
+import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
+import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.HomeApiService;
+import com.qyy.app.lipstick.model.response.home.GoodsList;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
 
@@ -27,7 +34,7 @@ import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
  */
 public class StartActivity extends BaseActivity {
 
-
+  
     @Override
     protected int getContentViewId() {
         return R.layout.activity_start;
@@ -41,7 +48,19 @@ public class StartActivity extends BaseActivity {
     }
 
     private void recordBehaver() {
+        BehaviorApiService behaviorApiService = HttpManager.create(BehaviorApiService.class);
+        final Call<RespInfo<Object>> call = behaviorApiService.uploadBehaviorLog("20","android","launch","","");
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+                LogUtil.d(data.toString());
+            }
 
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
+            }
+        });
     }
 
 

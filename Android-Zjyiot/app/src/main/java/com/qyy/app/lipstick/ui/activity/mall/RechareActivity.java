@@ -18,6 +18,7 @@ import com.ibupush.molu.common.util.ToastUtils;
 import com.qyy.app.lipstick.Contans;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
+import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.api.MallApiService;
 import com.qyy.app.lipstick.event.EmptyEvent;
@@ -117,18 +118,41 @@ public class RechareActivity extends BaseActivity {
                         switch (pos){
                             case 0:
                                 getPayParameter("wxpay");
+                                recordBehaver("22","paytype",1+"");
+                                recordBehaver("22","pay_confirm",1+"");
                                 break;
                             case 1:
                                 getPayParameter("alipay");
+                                recordBehaver("22","paytype",2+"");
+                                recordBehaver("22","pay_confirm",1+"");
+                                break;
+                            case 2:
+                                recordBehaver("22","pay_cancel",2+"");
                                 break;
                         }
                     }
                 });
                 paySelectDialog.show(getSupportFragmentManager(),"Rechare");
+                recordBehaver("22","click_recharge",mRechareGoodsList.get(checkPos).getId()+"");
+                recordBehaver("21","prepay_window","");
             }
         });
     }
+    private void recordBehaver(String t,String rseat,String id) {
+        BehaviorApiService behaviorApiService = HttpManager.create(BehaviorApiService.class);
+        final Call<RespInfo<Object>> call = behaviorApiService.uploadBehaviorLog(t,"android",rseat,id,"");
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+                LogUtil.d(data.toString());
+            }
 
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
+            }
+        });
+    }
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);

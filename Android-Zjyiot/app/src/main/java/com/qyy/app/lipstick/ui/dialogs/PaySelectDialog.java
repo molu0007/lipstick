@@ -83,6 +83,9 @@ public class PaySelectDialog extends DialogFragment implements CallDelegate {
                 this.dismiss();
                 break;
             case R.id.bt_cancle:
+                if (mOnSelectListener!=null){
+                    mOnSelectListener.onSelect(2);
+                }
                 dismiss();
                 break;
             case R.id.bt_ok:

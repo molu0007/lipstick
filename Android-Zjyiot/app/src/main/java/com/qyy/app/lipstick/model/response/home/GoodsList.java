@@ -54,7 +54,7 @@ public class GoodsList {
          * enabled : 1
          */
 
-        private long id;
+        private String id;
         private long ad_position_id;
         private long media_type;
         private String name;
@@ -64,11 +64,11 @@ public class GoodsList {
         private Object end_time;
         private int enabled;
 
-        public long getId() {
+        public String getId() {
             return id;
         }
 
-        public void setId(long id) {
+        public void setId(String id) {
             this.id = id;
         }
 

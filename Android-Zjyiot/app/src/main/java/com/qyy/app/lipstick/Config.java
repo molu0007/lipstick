@@ -95,4 +95,6 @@ public final class  Config {
      *领取口红
      */
     public final static String URL_DRAWLINPSTICK="/api/jucaib/order/drawlipstick ";
+
+    public final static String URL_BEHAVIOR="/api/jucaib/game/log";
 }

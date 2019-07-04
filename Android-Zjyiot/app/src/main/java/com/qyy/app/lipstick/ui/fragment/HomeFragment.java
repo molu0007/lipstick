@@ -31,6 +31,7 @@ import com.ibupush.molu.common.util.ToastUtils;
 import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.adapter.home.UrlImgAdapter;
+import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.event.EventManager;
 import com.qyy.app.lipstick.event.EventType;
@@ -155,11 +156,35 @@ public class HomeFragment extends BaseFragment {
         vpHeader.setScrollDurtion(222);//两页切换时间
         vpHeader.setCanLoop(true);//循环播放
         vpHeader.hideIndicatorLayout();
-        vpHeader.setAdapter(new UrlImgAdapter(getActivity()), mGoodsList.getBanner());
+        UrlImgAdapter urlImgAdapter=new UrlImgAdapter(getActivity());
+        urlImgAdapter.setOnItemClikeListener(new UrlImgAdapter.ItemOnClikeListener() {
+            @Override
+            public void onClick(GoodsList.BannerBean data) {
+                Intent intent= new Intent(getActivity(),WebViewActivity.class);
+                intent.putExtra("url",data.getLink());
+                startActivity(intent);
+                recordBehaver("click_banner",data.getId());
+            }
+        });
+        vpHeader.setAdapter(urlImgAdapter, mGoodsList.getBanner());
         upmvTextview.setViews(getViews());
         return headerView;
     }
+    private void recordBehaver(String rseat,String id) {
+        BehaviorApiService behaviorApiService = HttpManager.create(BehaviorApiService.class);
+        final Call<RespInfo<Object>> call = behaviorApiService.uploadBehaviorLog("22","android",rseat,id,"");
+        call.enqueue(new NetResponseCall<Object>(this) {
+            @Override
+            protected void onSuccess(Call<RespInfo<Object>> call, Object data) {
+                LogUtil.d(data.toString());
+            }
 
+            @Override
+            protected void onFail(Call<RespInfo<Object>> call, int type, String code, String tip) {
+
+            }
+        });
+    }
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
@@ -234,6 +259,7 @@ public class HomeFragment extends BaseFragment {
                 holder.setOnClickListener(R.id.tv_integral, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        recordBehaver("click_product",goodsBean.getGid()+"");
                         showGoodDialog(goodsBean);
                     }
                 });
@@ -281,6 +307,7 @@ public class HomeFragment extends BaseFragment {
                 .addViewOnclick(R.id.bt_challenge, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        recordBehaver("click_challenge",gameId+"");
                        initGame(gameId);
                     }
                 })
