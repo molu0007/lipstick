@@ -69,8 +69,8 @@ public  class GoodsBean {
         this.brand = brand;
     }
 
-    public float getCounterPrice() {
-        return counterPrice;
+    public int getCounterPrice() {
+        return (int) counterPrice;
     }
 
     public void setCounterPrice(float counterPrice) {

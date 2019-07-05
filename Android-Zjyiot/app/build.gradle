@@ -60,11 +60,11 @@ dependencies {
     compile project(':common')
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     compile project(':lib-zxing')
-    //注释掉原有bugly的仓库
-    //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.3.2
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+//    //注释掉原有bugly的仓库
+//    //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.3.2
+//    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+//    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+//    compile 'com.tencent.bugly:nativecrashreport:latest.release'
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     //https://github.com/hongyangAndroid/baseAdapter
     compile 'com.zhy:base-rvadapter:3.0.3'
