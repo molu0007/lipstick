@@ -90,6 +90,7 @@ public class HomeFragment extends BaseFragment {
     private CommonAdapter<GoodsBean> mAdapter;
     private CustomDialog customDialogGoods;
     private long gameId;
+    private UrlImgAdapter urlImgAdapter;
 
     protected int getContentViewId() {
         return R.layout.fragment_home;
@@ -156,7 +157,7 @@ public class HomeFragment extends BaseFragment {
         vpHeader.setScrollDurtion(222);//两页切换时间
         vpHeader.setCanLoop(true);//循环播放
         vpHeader.hideIndicatorLayout();
-        UrlImgAdapter urlImgAdapter=new UrlImgAdapter(getActivity());
+         urlImgAdapter=new UrlImgAdapter(getActivity());
         urlImgAdapter.setOnItemClikeListener(new UrlImgAdapter.ItemOnClikeListener() {
             @Override
             public void onClick(GoodsList.BannerBean data) {
@@ -236,7 +237,7 @@ public class HomeFragment extends BaseFragment {
                 mGoodsList = data;
                 if (mGoodsList != null) {
                     refresh();
-                    vpHeader.setAdapter(new UrlImgAdapter(getActivity()), mGoodsList.getBanner());
+                    vpHeader.setAdapter(urlImgAdapter, mGoodsList.getBanner());
                     mAdapter.notifyDataSetChanged();
                 }
             }

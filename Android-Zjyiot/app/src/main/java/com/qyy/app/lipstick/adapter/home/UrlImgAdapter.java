@@ -49,7 +49,6 @@ public class UrlImgAdapter implements LBaseAdapter<GoodsList.BannerBean> {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                  if (mItemOnClikeListener!=null){
                      mItemOnClikeListener.onClick(data);
                  }

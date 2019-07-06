@@ -7,7 +7,7 @@ import android.support.multidex.MultiDex;
 import com.ibupush.molu.common.net.HttpManager;
 import com.ibupush.molu.common.util.LogUtil;
 
-import com.tencent.bugly.Bugly;
+
 
 import java.lang.ref.WeakReference;
 
@@ -34,7 +34,7 @@ public class BaseApplication extends Application{
         super.onCreate();
         mContext = new WeakReference<>(getApplicationContext());
         accoundId= PrefsUtil.getAccountId(getAppContext());
-        initBugly();
+//        initBugly();
         initNet();
         initLog();
         initUmeng();
@@ -55,9 +55,9 @@ public class BaseApplication extends Application{
         // 将该app注册到微信
         mWxApi.registerApp(Contans.WX_APP_ID);
     }
-    private void initBugly() {
-        Bugly.init(getApplicationContext(), "c08fa87ca9", false);
-        }
+//    private void initBugly() {
+//        Bugly.init(getApplicationContext(), "c08fa87ca9", false);
+//        }
 
     @Override
     protected void attachBaseContext(Context base) {
