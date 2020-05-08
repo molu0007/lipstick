@@ -28,7 +28,7 @@ public class NewsFragment extends BaseFragment {
     protected void initView(@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.initView(container, savedInstanceState);
         hideToolbarNavigationIcon();
-        setCenterTitleText("每日资讯");
+        setCenterTitleText(((MainActivity)getActivity()).getH5Mame());
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.qyy.app.lipstick.ui.fragment.HomeFragment;
 import com.qyy.app.lipstick.ui.fragment.NewsFragment;
 import com.qyy.app.lipstick.ui.fragment.OverlendingFragment;
 import com.qyy.app.lipstick.ui.fragment.TopUpFragment;
+import com.qyy.app.lipstick.views.MDMRadioButton;
 
 import retrofit2.Call;
 
@@ -83,6 +84,7 @@ public class MainActivity extends BaseActivity {
                   if (data.getShow_daicao()==1){
                       LogUtil.d("mainactivity："+data.getShow_daicao());
                       mRadioGroup.getChildAt(2).setVisibility(View.VISIBLE);
+                      ((MDMRadioButton)mRadioGroup.getChildAt(2)).setText(data.getH5Name());
                   }else {
                       mRadioGroup.getChildAt(2).setVisibility(View.GONE);
                   }
@@ -98,6 +100,9 @@ public class MainActivity extends BaseActivity {
 
     public String getH5Url(){
         return serviceInfo.getH5Url();
+    }
+    public String getH5Mame(){
+        return serviceInfo.getH5Name();
     }
     public void toUp(){
         mFragmentHelper.toggleFragment(MainActivity.TAG_TOP_UP);

@@ -27,6 +27,15 @@ public class ServiceInfo {
     private String weixin_id;
 
     private String h5Url;
+    private String h5Name;
+
+    public String getH5Name() {
+        return h5Name;
+    }
+
+    public void setH5Name(String h5Name) {
+        this.h5Name = h5Name;
+    }
 
     public String getH5Url() {
         return h5Url;
