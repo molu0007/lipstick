@@ -26,6 +26,16 @@ public class ServiceInfo {
     private int show_daicao;
     private String weixin_id;
 
+    private String h5Url;
+
+    public String getH5Url() {
+        return h5Url;
+    }
+
+    public void setH5Url(String h5Url) {
+        this.h5Url = h5Url;
+    }
+
     public String getAd_url() {
         return ad_url;
     }

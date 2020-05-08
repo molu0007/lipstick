@@ -77,8 +77,8 @@ public  class GoodsBean {
         this.counterPrice = counterPrice;
     }
 
-    public float getMarketPrice() {
-        return marketPrice;
+    public int getMarketPrice() {
+        return (int) marketPrice;
     }
 
     public void setMarketPrice(float marketPrice) {

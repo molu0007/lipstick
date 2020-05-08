@@ -161,7 +161,7 @@ public class HomeFragment extends BaseFragment {
         urlImgAdapter.setOnItemClikeListener(new UrlImgAdapter.ItemOnClikeListener() {
             @Override
             public void onClick(GoodsList.BannerBean data) {
-                Intent intent= new Intent(getActivity(),WebViewActivity.class);
+                Intent intent= new Intent(getActivity(),WebViewGameActivity.class);
                 intent.putExtra("url",data.getLink());
                 startActivity(intent);
                 recordBehaver("click_banner",data.getId());

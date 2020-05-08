@@ -20,6 +20,7 @@ import com.qyy.app.lipstick.ui.activity.mall.QrCodeActivity;
 import com.qyy.app.lipstick.ui.fragment.MyFragment;
 import com.qyy.app.lipstick.ui.fragment.FragmentHelper;
 import com.qyy.app.lipstick.ui.fragment.HomeFragment;
+import com.qyy.app.lipstick.ui.fragment.NewsFragment;
 import com.qyy.app.lipstick.ui.fragment.OverlendingFragment;
 import com.qyy.app.lipstick.ui.fragment.TopUpFragment;
 
@@ -67,7 +68,7 @@ public class MainActivity extends BaseActivity {
         mFragmentHelper.toggleFragment(TAG_HOME);
     }
 
-
+    ServiceInfo serviceInfo;
 
     @Override
     protected void initData(Bundle savedInstanceState) {
@@ -78,9 +79,12 @@ public class MainActivity extends BaseActivity {
             @Override
             protected void onSuccess(Call<RespInfo<ServiceInfo>> call, ServiceInfo data) {
                 if (data!=null){
+                    serviceInfo=data;
                   if (data.getShow_daicao()==1){
                       LogUtil.d("mainactivity："+data.getShow_daicao());
-                      mRadioGroup.getChildAt(1).setVisibility(View.VISIBLE);
+                      mRadioGroup.getChildAt(2).setVisibility(View.VISIBLE);
+                  }else {
+                      mRadioGroup.getChildAt(2).setVisibility(View.GONE);
                   }
                 }
             }
@@ -92,6 +96,9 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    public String getH5Url(){
+        return serviceInfo.getH5Url();
+    }
     public void toUp(){
         mFragmentHelper.toggleFragment(MainActivity.TAG_TOP_UP);
     }
@@ -133,7 +140,7 @@ public class MainActivity extends BaseActivity {
                     fragment = new TopUpFragment();
                     break;
                 case TAG_DAIC://贷超
-                    fragment = new OverlendingFragment();
+                    fragment = new NewsFragment();
                     break;
                 case TAG_ABOUT:
                     fragment = new MyFragment();
