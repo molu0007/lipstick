@@ -14,6 +14,7 @@ import com.qyy.app.lipstick.NetResponseCall;
 import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.model.response.order.ServiceInfo;
+import com.qyy.app.lipstick.track.TrackHelper;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.base.BaseFragment;
 import com.qyy.app.lipstick.ui.activity.mall.QrCodeActivity;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.rb_tab_daichao:
                         mFragmentHelper.toggleFragment(TAG_DAIC);
+                        TrackHelper.getTrackHelper().recordBehaver("22","click_tab","dynamic_tab",getH5Url());
                         break;
                     case R.id.rb_tab_top_up:
                         mFragmentHelper.toggleFragment(TAG_TOP_UP);
