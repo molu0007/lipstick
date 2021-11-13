@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-Zjyiot.iml" filepath="$PROJECT_DIR$/Android-Zjyiot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Android-Zjyiot-app.iml" filepath="$PROJECT_DIR$/app/Android-Zjyiot-app.iml" group="Android-Zjyiot/app" />
+      <module fileurl="file://$PROJECT_DIR$/common/Android-Zjyiot-common.iml" filepath="$PROJECT_DIR$/common/Android-Zjyiot-common.iml" group="Android-Zjyiot/common" />
+      <module fileurl="file://$PROJECT_DIR$/lib-zxing/Android-Zjyiot-lib-zxing.iml" filepath="$PROJECT_DIR$/lib-zxing/Android-Zjyiot-lib-zxing.iml" group="Android-Zjyiot/lib-zxing" />
+      <module fileurl="file://$PROJECT_DIR$/pay-library/Android-Zjyiot-pay-library.iml" filepath="$PROJECT_DIR$/pay-library/Android-Zjyiot-pay-library.iml" group="Android-Zjyiot/pay-library" />
+      <module fileurl="file://$PROJECT_DIR$/aaaa-Android-Zjyiot.iml" filepath="$PROJECT_DIR$/aaaa-Android-Zjyiot.iml" group="Android-Zjyiot" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/lib-zxing/lib-zxing.iml" filepath="$PROJECT_DIR$/lib-zxing/lib-zxing.iml" />

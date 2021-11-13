@@ -1,5 +1,7 @@
 package com.qyy.app.lipstick.model.response.order;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * <p>类说明</p>
  *
@@ -28,6 +30,13 @@ public class ServiceInfo {
 
     private String h5Url;
     private String h5Name;
+
+    @SerializedName("screen_ad")
+    private ScreenAd screenAd;
+
+    public ScreenAd getScreenAd() {
+        return screenAd;
+    }
 
     public String getH5Name() {
         return h5Name;
@@ -91,5 +100,26 @@ public class ServiceInfo {
 
     public void setWeixin_id(String weixin_id) {
         this.weixin_id = weixin_id;
+    }
+
+    public static class ScreenAd{
+        String image_url;
+        String link;
+
+        public String getImage_url() {
+            return image_url;
+        }
+
+        public void setImage_url(String image_url) {
+            this.image_url = image_url;
+        }
+
+        public String getLink() {
+            return link;
+        }
+
+        public void setLink(String link) {
+            this.link = link;
+        }
     }
 }

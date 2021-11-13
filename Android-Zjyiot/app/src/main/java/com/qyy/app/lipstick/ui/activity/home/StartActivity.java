@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
 import android.telephony.TelephonyManager;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ibupush.molu.common.model.RespInfo;
 import com.ibupush.molu.common.net.HttpManager;
 import com.ibupush.molu.common.util.LogUtil;
@@ -27,6 +30,7 @@ import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
+import com.qyy.app.lipstick.utils.PrefsUtil;
 
 /**
  * @author dengwg
@@ -34,6 +38,8 @@ import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
  */
 public class StartActivity extends BaseActivity {
 
+    ImageView imageView;
+    TextView textView;
   
     @Override
     protected int getContentViewId() {
@@ -43,6 +49,29 @@ public class StartActivity extends BaseActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         super.initView(savedInstanceState);
+        String url=PrefsUtil.getString(PrefsUtil.SCREEN_IMAG_URL,null);
+        imageView= (ImageView) findViewById(R.id.iv_splash);
+        if (url!=null){
+            Glide.with(this).load(url).into(imageView);
+        }
+        textView= (TextView) findViewById(R.id.tv_count_dowon);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intentMainActivity();
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url=PrefsUtil.getString(PrefsUtil.SCREEN_IMAG_CLICLK_LINK,null);
+                if (url!=null){
+                    Intent intent=new Intent(StartActivity.this, WebViewActivity.class);
+                    intent.putExtra("url",url);
+                    startActivity(intent);
+                }
+            }
+        });
         timerStart();
         recordBehaver();
     }
@@ -72,14 +101,14 @@ public class StartActivity extends BaseActivity {
     /**
      * 倒数计时器
      */
-    private CountDownTimer timer = new CountDownTimer(2 * 1000, 1000) {
+    private CountDownTimer timer = new CountDownTimer(5 * 1000, 1000) {
         /**
          * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
          * @param millisUntilFinished
          */
         @Override
         public void onTick(long millisUntilFinished) {
-
+            textView.setText("跳过 "+millisUntilFinished/1000);
         }
 
         /**

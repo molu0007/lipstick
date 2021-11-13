@@ -26,6 +26,13 @@ public class PrefsUtil {
      * 用户积分
      */
     public static final String JIFEN = "jifen";
+
+    /**
+     * 用户开屏广告
+     */
+    public static final String SCREEN_IMAG_URL = "screen_imag_url";
+    public static final String SCREEN_IMAG_CLICLK_LINK = "screen_imag_link";
+
     public static String getToken() {
         if (token==null){
             return getString(Token);

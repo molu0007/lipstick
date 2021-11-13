@@ -24,6 +24,7 @@ import com.qyy.app.lipstick.ui.fragment.HomeFragment;
 import com.qyy.app.lipstick.ui.fragment.NewsFragment;
 import com.qyy.app.lipstick.ui.fragment.OverlendingFragment;
 import com.qyy.app.lipstick.ui.fragment.TopUpFragment;
+import com.qyy.app.lipstick.utils.PrefsUtil;
 import com.qyy.app.lipstick.views.MDMRadioButton;
 
 import retrofit2.Call;
@@ -89,6 +90,10 @@ public class MainActivity extends BaseActivity {
                       ((MDMRadioButton)mRadioGroup.getChildAt(2)).setText(data.getH5Name());
                   }else {
                       mRadioGroup.getChildAt(2).setVisibility(View.GONE);
+                  }
+                  if (data.getScreenAd()!=null){
+                      PrefsUtil.savaString(PrefsUtil.SCREEN_IMAG_CLICLK_LINK,data.getScreenAd().getLink());
+                      PrefsUtil.savaString(PrefsUtil.SCREEN_IMAG_URL,data.getScreenAd().getImage_url());
                   }
                 }
             }
