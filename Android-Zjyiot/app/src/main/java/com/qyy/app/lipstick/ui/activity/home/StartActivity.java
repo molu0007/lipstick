@@ -28,6 +28,7 @@ import com.qyy.app.lipstick.R;
 import com.qyy.app.lipstick.api.BehaviorApiService;
 import com.qyy.app.lipstick.api.HomeApiService;
 import com.qyy.app.lipstick.model.response.home.GoodsList;
+import com.qyy.app.lipstick.ui.activity.WebViewGameActivity;
 import com.qyy.app.lipstick.ui.activity.base.BaseActivity;
 import com.qyy.app.lipstick.ui.activity.login.LoginActivity;
 import com.qyy.app.lipstick.utils.PrefsUtil;
@@ -40,7 +41,7 @@ public class StartActivity extends BaseActivity {
 
     ImageView imageView;
     TextView textView;
-  
+
     @Override
     protected int getContentViewId() {
         return R.layout.activity_start;
@@ -66,13 +67,12 @@ public class StartActivity extends BaseActivity {
             public void onClick(View view) {
                 String url=PrefsUtil.getString(PrefsUtil.SCREEN_IMAG_CLICLK_LINK,null);
                 if (url!=null){
-                    Intent intent=new Intent(StartActivity.this, WebViewActivity.class);
+                    Intent intent=new Intent(StartActivity.this, WebViewGameActivity.class);
                     intent.putExtra("url",url);
                     startActivity(intent);
                 }
             }
         });
-        timerStart();
         recordBehaver();
     }
 
@@ -101,25 +101,21 @@ public class StartActivity extends BaseActivity {
     /**
      * 倒数计时器
      */
-    private CountDownTimer timer = new CountDownTimer(5 * 1000, 1000) {
-        /**
-         * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
-         * @param millisUntilFinished
-         */
-        @Override
-        public void onTick(long millisUntilFinished) {
-            textView.setText("跳过 "+millisUntilFinished/1000);
-        }
+    long millisInFuture =5 * 1000;
 
-        /**
-         * 倒计时完成时被调用
-         */
-        @Override
-        public void onFinish() {
-            intentMainActivity();
-        }
-    };
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timerCancel();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        timerStart();
+    }
 
     /**
      * 取消倒计时
@@ -127,11 +123,30 @@ public class StartActivity extends BaseActivity {
     public void timerCancel() {
         timer.cancel();
     }
-
+    CountDownTimer timer;
     /**
      * 开始倒计时
      */
     public void timerStart() {
+        timer =new CountDownTimer(millisInFuture, 1000) {
+            /**
+             * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
+             * @param millisUntilFinished
+             */
+            @Override
+            public void onTick(long millisUntilFinished) {
+                millisInFuture=millisUntilFinished;
+                textView.setText("跳过 "+millisUntilFinished/1000);
+            }
+
+            /**
+             * 倒计时完成时被调用
+             */
+            @Override
+            public void onFinish() {
+                intentMainActivity();
+            }
+        };
         timer.start();
     }
 

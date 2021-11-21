@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkInfo":{"type":"MAIN","splits":[],"versionCode":200},"path":"app-dev-release.apk","properties":{"packageId":"com.qyy.app.lipstick","split":"","minSdkVersion":"19"}}]
+[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":300,"versionName":"3.0","enabled":true,"outputFile":"app-dev-release.apk","fullName":"devRelease","baseName":"dev-release","dirName":""},"path":"app-dev-release.apk","properties":{}}]
